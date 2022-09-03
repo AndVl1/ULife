@@ -22,5 +22,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "ULife"
+
 include(":app")
+include(":uicommon")
