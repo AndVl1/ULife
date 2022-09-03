@@ -47,7 +47,7 @@ jobs:
         id: artifacts_copy
         run: |
           mkdir artifacts
-          cp ${{ steps.sign_apk_release.outputs.signedReleaseFile }} artifacts/app-release-${{ steps.buildnumber.outputs.build_number }}.apk
+          cp ${{ steps.sign_apk_release.outputs.signedReleaseFile }} artifacts/app-release.apk
           echo "::set-output name=path::artifacts/"
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
@@ -69,5 +69,5 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: New version in dev branch ${{steps.download.outputs.download-path}}
-          document: ${{steps.download.outputs.download-path}}
+          message: New version in dev branch
+          document: ${{steps.download.outputs.download-path}}/app-release.apk
