@@ -10,17 +10,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.bmstu.ulife.ui.theme.ULifeTheme
+import ru.bmstu.ulife.uicommon.theme.MainTheme
+import ru.bmstu.ulife.uicommon.theme.UlTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ULifeTheme {
+            MainTheme(darkTheme = true) {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = UlTheme.colors.primaryBackground
                 ) {
                     Greeting("Android")
                 }
@@ -31,13 +32,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+    Text(text = "Hello $name!", color = UlTheme.colors.primaryText)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    ULifeTheme {
+    MainTheme {
         Greeting("Android")
     }
 }
