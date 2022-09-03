@@ -3,7 +3,7 @@ name: Build dev branch
 on:
   push:
     branches:
-      - 'send-dev-to-tg'
+      - 'dev'
 
 jobs:
   build:
