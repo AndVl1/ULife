@@ -1,0 +1,46 @@
+[versions]
+kotlin-general = "1.7.10"
+kotlin-coroutines = "1.6.4"
+
+android-gradle = "7.2.2"
+android-activity = "1.3.1"
+
+material = "1.6.1"
+activity = "1.3.1"
+androidx-core-version = "1.8.0"
+
+lifecycle = "2.5.1"
+
+compose = "1.2.1"
+compose-compiler = "1.3.0"
+compose-accompanist = "0.25.1"
+compose-constraint = "1.0.1"
+compose-navigation = "2.5.1"
+
+serialization-json = "1.4.0"
+
+
+[libraries]
+android-gradle = { module = "com.android.tools.build:gradle", version.ref = "android-gradle" }
+
+kotlin-serialization-gradle = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin-general" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-json" }
+
+android-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core-version" }
+android-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
+
+lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+
+# UI
+material = { module = "com.google.android.material:material", version.ref = "material" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity" }
+
+[plugins]
+android-app = { id = "com.android.application", version.ref = "android-gradle" }
+android-lib = { id = "com.android.library", version.ref = "android-gradle" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-general" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-general" }
