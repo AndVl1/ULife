@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -52,6 +53,14 @@ dependencies {
     implementation(libs.compose.tooling)
     implementation(libs.lifecycle.runtime)
     implementation(libs.compose.activity)
+    implementation(libs.okhttp)
+    implementation(libs.ktor.okhttp)
+    implementation(libs.ktor.logging)
+    implementation(libs.ktor.json)
+    implementation(libs.ktor.negotiation)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+    implementation(libs.kotlin.serialization.json)
     implementation(projects.uicommon)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
