@@ -71,5 +71,5 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             New version in dev branch
-            Commit name: ${{ ${{ github.event.commits[0].message }} }}
+            Commit name: ${{ github.event.commits[0].message }}
           document: ${{steps.download.outputs.download-path}}/app-release.apk
