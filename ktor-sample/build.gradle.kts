@@ -8,7 +8,7 @@ android {
     compileSdk = 32
 
     defaultConfig {
-        applicationId = "ru.bmstu.ulife"
+        applicationId = "ru.bmstu.sample"
         minSdk = 23
         targetSdk = 32
         versionCode = 1
@@ -30,23 +30,19 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
     buildFeatures {
         compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
+
     implementation(libs.android.core.ktx)
     implementation(libs.compose.ui)
     implementation(libs.compose.material)
@@ -55,6 +51,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.compose.activity)
     implementation(libs.okhttp)
+    implementation(libs.ktor.core)
     implementation(libs.ktor.okhttp)
     implementation(libs.ktor.logging)
     implementation(libs.ktor.json)
@@ -67,7 +64,4 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.2.1")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.2.1")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.2.1")
 }
