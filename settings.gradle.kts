@@ -27,3 +27,4 @@ rootProject.name = "ULife"
 
 include(":app")
 include(":uicommon")
+include(":ktor-sample")
