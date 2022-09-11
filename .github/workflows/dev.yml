@@ -5,6 +5,9 @@ on:
     branches:
       - 'dev'
 
+env:
+  MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
