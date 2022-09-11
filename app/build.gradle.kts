@@ -81,7 +81,7 @@ dependencies {
 fun getMapsApiKey(): String {
     val envKey = System.getenv("MAPS_API_KEY")
     return if (envKey.isNullOrEmpty()) {
-        gradleLocalProperties(rootDir).getProperty("maps_api_key")
+        gradleLocalProperties(rootProject.rootDir).getProperty("maps_api_key")
     } else {
         envKey
     }

@@ -16,8 +16,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: 'recursive'
-      - name: Create local.properties
-        run: touch local.properties
       - name: Set up JDK 1.11
         uses: actions/setup-java@v2
         with:
