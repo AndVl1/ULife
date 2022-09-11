@@ -18,14 +18,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders["maps_api_key"] = kotlin.run {
-            val mapKey = gradleLocalProperties(rootDir).getProperty("maps_api_key")
-            return@run if (mapKey.isNullOrEmpty()) {
-                System.getenv("MAPS_API_KEY")
-            } else {
-                mapKey
-            }
-        }
+        manifestPlaceholders["maps_api_key"] = getMapsApiKey()
     }
 
     buildTypes {
@@ -83,4 +76,13 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.2.1")
     debugImplementation("androidx.compose.ui:ui-tooling:1.2.1")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.2.1")
+}
+
+fun getMapsApiKey(): String {
+    val envKey = System.getenv("MAPS_API_KEY")
+    return if (envKey.isNullOrEmpty()) {
+        gradleLocalProperties(rootDir).getProperty("maps_api_key")
+    } else {
+        envKey
+    }
 }
