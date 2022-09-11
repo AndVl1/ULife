@@ -80,9 +80,9 @@ dependencies {
 
 fun getMapsApiKey(): String {
     val envKey = System.getenv("MAPS_API_KEY")
-    return if (envKey.isNullOrEmpty()) {
+    return envKey/*if (envKey.isNullOrEmpty()) {
         gradleLocalProperties(rootDir).getProperty("maps_api_key")
     } else {
         envKey
-    }
+    }*/
 }
