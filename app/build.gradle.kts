@@ -19,11 +19,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders["maps_api_key"] = kotlin.run {
-            val mapKey = gradleLocalProperties(rootDir).getProperty("maps_api_key")
-            return@run if (mapKey.isNullOrEmpty()) {
-                System.getenv("MAPS_API_KEY")
-            } else {
+            return@run try {
+                val mapKey = gradleLocalProperties(rootDir).getProperty("maps_api_key")
                 mapKey
+            } catch (e: Exception) {
+                System.getenv("MAPS_API_KEY")
             }
         }
     }
