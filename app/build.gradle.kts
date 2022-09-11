@@ -1,9 +1,6 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1"
     kotlin("plugin.serialization")
 }
 
@@ -18,14 +15,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders["maps_api_key"] = kotlin.run {
-            val mapKey = gradleLocalProperties(rootDir).getProperty("maps_api_key")
-            return@run if (mapKey.isNullOrEmpty()) {
-                System.getenv("MAPS_API_KEY")
-            } else {
-                mapKey
-            }
-        }
     }
 
     buildTypes {
@@ -74,8 +63,6 @@ dependencies {
     implementation(libs.koin.compose)
     implementation(libs.kotlin.serialization.json)
     implementation(libs.coroutines)
-    implementation(libs.googlemaps.common)
-    implementation(libs.googlemaps.compose)
     implementation(projects.uicommon)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
