@@ -10,7 +10,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.bmstu.ulife.main.maps.MapsScreen
 import ru.bmstu.ulife.uicommon.theme.MainTheme
 import ru.bmstu.ulife.uicommon.theme.UlTheme
 
@@ -20,7 +19,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             MainTheme(darkTheme = true) {
                 // A surface container using the 'background' color from the theme
-                MapsScreen()
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = UlTheme.colors.primaryBackground
+                ) {
+                    Greeting("Android")
+                }
             }
         }
     }
