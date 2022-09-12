@@ -5,6 +5,9 @@ on:
     branches:
       - 'dev'
 
+env:
+  MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
+
 jobs:
   build:
     name: "Build apk"
@@ -18,5 +21,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
+      - name: Create local.properties
+        run: touch local.properties
       - name: Build debug
         run: ./gradlew assembleDebug
