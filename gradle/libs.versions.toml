@@ -17,6 +17,9 @@ compose-accompanist = "0.25.1"
 compose-constraint = "1.0.1"
 compose-navigation = "2.5.1"
 
+maps-compose = "2.7.0"
+maps = "18.1.0"
+
 serialization-json = "1.4.0"
 
 ktor = "2.1.0"
@@ -45,6 +48,10 @@ compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "co
 compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity" }
+compose-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "compose-accompanist" }
+
+googlemaps-common = { module = "com.google.android.gms:play-services-maps", version.ref = "maps" }
+googlemaps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "maps-compose" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
