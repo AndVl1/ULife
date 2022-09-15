@@ -19,6 +19,8 @@ compose-navigation = "2.5.1"
 
 maps-compose = "2.7.0"
 maps = "18.1.0"
+# play-services
+ps-location = "20.0.0"
 
 serialization-json = "1.4.0"
 
@@ -51,6 +53,7 @@ compose-activity = { module = "androidx.activity:activity-compose", version.ref 
 compose-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "compose-accompanist" }
 
 googlemaps-common = { module = "com.google.android.gms:play-services-maps", version.ref = "maps" }
+play-location = { module = "com.google.android.gms:play-services-location", version.ref = "ps-location" }
 googlemaps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "maps-compose" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }

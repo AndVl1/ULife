@@ -26,7 +26,8 @@ data class UlTypography(
     val heading: TextStyle,
     val body: TextStyle,
     val toolbar: TextStyle,
-    val caption: TextStyle
+    val caption: TextStyle,
+    val errorToast: TextStyle,
 )
 
 object UlTheme {

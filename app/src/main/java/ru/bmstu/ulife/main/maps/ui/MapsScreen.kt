@@ -1,0 +1,144 @@
+package ru.bmstu.ulife.main.maps.ui
+
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.Card
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.PermissionStatus
+import com.google.accompanist.permissions.rememberPermissionState
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.CameraPositionState
+import com.google.maps.android.compose.rememberCameraPositionState
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import org.koin.androidx.compose.getViewModel
+import ru.bmstu.ulife.main.maps.MapScreenViewModel
+import ru.bmstu.ulife.main.maps.MapsScreenEvent
+import ru.bmstu.ulife.main.maps.model.EventsLoadingState
+import ru.bmstu.ulife.uicommon.theme.UlTheme
+import ru.bmstu.ulife.utils.UserLocation
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun MapsScreen() {
+    val viewModel = getViewModel<MapScreenViewModel>()
+    val coroutineScope = rememberCoroutineScope()
+    val locationPermissionState = rememberPermissionState(
+        android.Manifest.permission.ACCESS_FINE_LOCATION
+    )
+    val locationEnabled = remember { mutableStateOf(false) }
+    val currentState = viewModel.state.collectAsState()
+    val events = viewModel.events.collectAsState()
+    val moscow = UserLocation(LatLng(55.751244, 37.618423), false)
+    val currentLocation: State<UserLocation> = viewModel.location.collectAsState(initial = moscow)
+    val cameraPositionState = rememberCameraPositionState {
+        position = CameraPosition.fromLatLngZoom(currentLocation.value.latLng, zoom)
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        GoogleMapView(
+            modifier = Modifier.fillMaxSize(),
+            cameraPositionState = cameraPositionState,
+            onMapLoaded = {},
+            events = events.value,
+            onEventDetailsClicked = {},
+            userLocation = currentLocation.value
+        )
+        Button(
+            modifier = Modifier.align(Alignment.BottomEnd),
+            onClick = {
+                when (val status = locationPermissionState.status) {
+                    is PermissionStatus.Denied -> {
+                        if (status.shouldShowRationale) {
+                            viewModel.handleEvent(MapsScreenEvent.CurrentLocationClicked(false))
+                        } else {
+                            locationPermissionState.launchPermissionRequest()
+                        }
+                    }
+                    PermissionStatus.Granted -> {
+                        locationEnabled.value = true
+                        if (currentLocation.value.isFromGps) {
+                            cameraPositionState.animate(
+                                currentLocation.value.latLng,
+                                coroutineScope
+                            )
+                        }
+                    }
+                }
+            },
+        ) {
+            Text(text = "My pos")
+        }
+        AnimatedVisibility(
+            visible = currentState.value is EventsLoadingState.Error,
+            enter = slideInVertically { fullHeight -> fullHeight + 32 },
+            exit = slideOutVertically { fullHeight -> fullHeight + 32 },
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .height(64.dp)
+        ) {
+            val errorText = (currentState.value as? EventsLoadingState.Error)?.text
+            Card(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth(),
+                backgroundColor = UlTheme.colors.secondaryBackground,
+                contentColor = UlTheme.colors.primaryText,
+                shape = RoundedCornerShape(4.dp),
+            ) {
+                Box(modifier = Modifier.fillMaxSize().padding(vertical = 4.dp)) {
+                    Text(
+                        modifier = Modifier.align(Alignment.Center),
+                        text = errorText ?: "",
+                        style = UlTheme.typography.errorToast,
+                        textAlign = TextAlign.Center,
+                    )
+                }
+            }
+        }
+    }
+    
+    LaunchedEffect(key1 = currentState) {
+        viewModel.handleEvent(MapsScreenEvent.EnterScreen)
+    }
+
+    LaunchedEffect(key1 = currentLocation.value) {
+        cameraPositionState.animate(currentLocation.value.latLng, this)
+    }
+}
+
+private fun CameraPositionState.animate(latLng: LatLng, scope: CoroutineScope) {
+    scope.launch {
+        this@animate.animate(
+            CameraUpdateFactory.newCameraPosition(
+                CameraPosition.fromLatLngZoom(latLng, zoom)
+            )
+        )
+    }
+}
+
+private const val zoom = 10f
