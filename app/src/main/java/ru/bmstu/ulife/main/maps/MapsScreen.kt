@@ -17,12 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.Marker
-import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import org.koin.androidx.compose.getViewModel
-import ru.bmstu.ulife.main.maps.model.LoadingState
+import ru.bmstu.ulife.data.states.LoadingState
 import ru.bmstu.ulife.uicommon.theme.UlTheme
 
 @Composable

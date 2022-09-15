@@ -6,8 +6,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.bmstu.ulife.main.maps.model.EventModel
-import ru.bmstu.ulife.main.maps.model.LoadingState
+import ru.bmstu.ulife.data.models.EventModel
+import ru.bmstu.ulife.data.repository.MapPlacesRepository
+import ru.bmstu.ulife.data.states.LoadingState
 import ru.bmstu.ulife.mvi.IntentHandler
 
 class MapScreenViewModel(
@@ -21,10 +22,16 @@ class MapScreenViewModel(
 
     override fun handleEvent(event: MapsScreenEvent) {
         when (val current = _state.value) {
-            LoadingState.Error -> TODO()
+            LoadingState.Error -> {
+                //TODO()
+            }
             is LoadingState.Initial -> reduce(event, current)
-            is LoadingState.Loaded -> TODO()
-            LoadingState.Loading -> TODO()
+            is LoadingState.Loaded -> {
+                //TODO()
+            }
+            LoadingState.Loading -> {
+                //TODO()
+            }
         }
     }
 

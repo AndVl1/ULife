@@ -1,4 +1,6 @@
-package ru.bmstu.ulife.main.maps.model
+package ru.bmstu.ulife.data.states
+
+import ru.bmstu.ulife.data.models.EventModel
 
 sealed class LoadingState {
     object Loading : LoadingState()

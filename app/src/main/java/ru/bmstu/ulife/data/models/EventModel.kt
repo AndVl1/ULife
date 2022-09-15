@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.main.maps.model
+package ru.bmstu.ulife.data.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

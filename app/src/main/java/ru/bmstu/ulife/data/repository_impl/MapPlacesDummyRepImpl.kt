@@ -1,10 +1,11 @@
-package ru.bmstu.ulife.main.maps
+package ru.bmstu.ulife.data.repository_impl
 
-import ru.bmstu.ulife.main.maps.model.EventModel
-import ru.bmstu.ulife.main.maps.model.LoadingState
+import ru.bmstu.ulife.data.models.EventModel
+import ru.bmstu.ulife.data.repository.MapPlacesRepository
+import ru.bmstu.ulife.data.states.LoadingState
 import kotlin.random.Random
 
-class MapPlacesDummyRepImpl : MapPlacesRepository{
+class MapPlacesDummyRepImpl : MapPlacesRepository {
 
     override fun getEvents(): LoadingState {
         val points = arrayListOf<EventModel>()
