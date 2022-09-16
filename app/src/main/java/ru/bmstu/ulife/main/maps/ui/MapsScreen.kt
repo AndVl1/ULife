@@ -66,7 +66,8 @@ fun MapsScreen() {
             onMapLoaded = {},
             events = events.value,
             onEventDetailsClicked = {},
-            userLocation = currentLocation.value
+            userLocation = currentLocation.value,
+            onCreateNewEvent = {}
         )
         Button(
             modifier = Modifier.align(Alignment.BottomEnd),
