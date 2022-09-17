@@ -44,7 +44,8 @@ fun GoogleMapView(
         cameraPositionState = cameraPositionState,
         onMapLoaded = onMapLoaded,
         uiSettings = mapUiSettings,
-        onMapLongClick = { latLng -> createUserLocation.value = latLng }
+        onMapLongClick = { latLng -> createUserLocation.value = latLng },
+        onMapClick = { createUserLocation.value = null }
     ) {
         events.map { event ->
             MarkerStateModel(event, MarkerState(LatLng(event.latitude.toDouble(), event.longitude.toDouble())))
