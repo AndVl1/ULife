@@ -32,7 +32,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            //buildConfigField("String", "API_URL","http://37.139.33.65:8080/")
+            buildConfigField("String", "API_URL","http://37.139.33.65:8080/")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

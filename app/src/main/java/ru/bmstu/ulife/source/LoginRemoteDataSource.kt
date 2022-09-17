@@ -11,9 +11,8 @@ class LoginRemoteDataSource constructor(
 ) {
     suspend fun register(userModel: SendToServerUserModel): Result<UserModel> {
         val response = loginService.register(userModel)
-        val body = response.body<UserModel>()
         return if (response.status.value == 200) {
-            Result.Success(body)
+            Result.RegisterSuccess
         } else {
             Result.Error(response.status.value)
         }

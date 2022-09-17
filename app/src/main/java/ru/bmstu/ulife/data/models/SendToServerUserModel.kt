@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class SendToServerUserModel (
-    @SerialName("firstname")
+    @SerialName("firstName")
     val firstName: String,
 
-    @SerialName("lastname")
+    @SerialName("lastName")
     val lastName: String,
 
     @SerialName("email")
@@ -29,6 +29,6 @@ data class SendToServerUserModel (
     @SerialName("password")
     val password: String,
 
-    @SerialName("role")
-    val role: String
+    @SerialName("roleId")
+    val roleId: Int
 )

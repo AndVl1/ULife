@@ -61,18 +61,14 @@ class AuthorizationFragment : Fragment()  {
         when (newState) {
             is LoginState.LoginSuccess -> {
                 val token = newState.token
-                println("LOG:: token=" + token)
                 onAuthorizationClick()
                 //storage.putAuthToken(token)
             }
             is LoginState.RegisterSuccess -> {
-                userModel = newState.userModel
-                println("LOG:: usermodel=" + userModel)
                 onAuthorizationClick()
                 //storage.putUserModel(userModel)
             }
             is LoginState.LogoutSuccess -> {
-                println("LOG:: logout")
                 //storage.removeAuthToken()
 
             }
@@ -150,7 +146,6 @@ class AuthorizationFragment : Fragment()  {
         if (userModel != null) {
             loginViewModel.login(userModel!!.userId)
         }
-        //onAuthorizationClick()
     }
 
     private fun registerUser() {
@@ -164,11 +159,10 @@ class AuthorizationFragment : Fragment()  {
                 country = signUpEtCountry.text.toString(),
                 city = signUpEtCity.text.toString(),
                 password = signInEtPassword.text.toString(),
-                role = "USER"
+                roleId = 0
             )
             loginViewModel.register(userModel)
         }
-        //onAuthorizationClick()
     }
 
     private fun onAuthorizationClick() {

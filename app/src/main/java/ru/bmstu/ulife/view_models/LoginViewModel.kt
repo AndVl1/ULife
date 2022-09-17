@@ -9,17 +9,17 @@ import ru.bmstu.ulife.data.models.SendToServerUserModel
 import ru.bmstu.ulife.data.repository.LoginRepository
 import ru.bmstu.ulife.data.states.ErrorHandler
 import ru.bmstu.ulife.data.states.LoginState
+import ru.bmstu.ulife.data.states.LoginState.RegisterSuccess
 
 class LoginViewModel constructor(private val repository: LoginRepository) : ViewModel() {
     private val state: MutableSharedFlow<LoginState> = MutableStateFlow(LoginState.Default)
     private val _state: SharedFlow<LoginState> = state.asSharedFlow()
 
     fun register(userModel: SendToServerUserModel) {
-        println("LOG:: register " + userModel)
         viewModelScope.launch {
             repository.register(userModel)
                 .catch { onError(it) }
-                .collect { state.emit(LoginState.RegisterSuccess(it)) }
+                .collect { state.emit(RegisterSuccess) }
         }
     }
 

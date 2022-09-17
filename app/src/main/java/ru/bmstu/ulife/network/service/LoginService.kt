@@ -11,6 +11,7 @@ interface LoginService {
         userModel: SendToServerUserModel
     ): HttpResponse = initKtorClient().post("http://37.139.33.65:8080/$REGISTER") {
         header(HttpHeaders.ContentType, ContentType.Application.Json)
+        header(HttpHeaders.Accept, ContentType.Application.Json)
         setBody(userModel)
     }
 

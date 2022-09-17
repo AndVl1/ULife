@@ -13,11 +13,11 @@ class LoginRepository constructor(
     private val storage: SharedPreferencesStorage,
     private val remoteDataSource: LoginRemoteDataSource
 ) {
-    suspend fun register(userModel: SendToServerUserModel): Flow<UserModel> {
+    suspend fun register(userModel: SendToServerUserModel): Flow<Unit> {
         return flow {
             val responseFeed = remoteDataSource.register(userModel)
-            if (responseFeed is Result.Success) {
-                emit(responseFeed.data)
+            if (responseFeed is Result.RegisterSuccess) {
+                emit(Unit)
             }
         }
     }
