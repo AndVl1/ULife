@@ -1,7 +1,6 @@
 package ru.bmstu.ulife.main.maps.ui
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -23,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -39,8 +39,10 @@ import org.koin.androidx.compose.getViewModel
 import ru.bmstu.ulife.main.maps.MapScreenViewModel
 import ru.bmstu.ulife.main.maps.MapsScreenEvent
 import ru.bmstu.ulife.main.maps.model.EventsLoadingState
+import ru.bmstu.ulife.uicommon.helper.UlAlertDialog
 import ru.bmstu.ulife.uicommon.theme.UlTheme
 import ru.bmstu.ulife.utils.UserLocation
+import ru.bmstu.ulife.utils.openAppSystemSettings
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -58,6 +60,8 @@ fun MapsScreen() {
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(currentLocation.value.latLng, zoom)
     }
+    val locationPermissionDialogShown = remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     Box(modifier = Modifier.fillMaxSize()) {
         GoogleMapView(
@@ -74,13 +78,14 @@ fun MapsScreen() {
                 when (val status = locationPermissionState.status) {
                     is PermissionStatus.Denied -> {
                         if (status.shouldShowRationale) {
-                            viewModel.handleEvent(MapsScreenEvent.CurrentLocationClicked(false))
+                            locationPermissionDialogShown.value = true
                         } else {
                             locationPermissionState.launchPermissionRequest()
                         }
                     }
                     PermissionStatus.Granted -> {
                         locationEnabled.value = true
+                        viewModel.handleEvent(MapsScreenEvent.CurrentLocationClicked(true))
                         if (currentLocation.value.isFromGps) {
                             cameraPositionState.animate(
                                 currentLocation.value.latLng,
@@ -94,14 +99,14 @@ fun MapsScreen() {
             Text(text = "My pos")
         }
         AnimatedVisibility(
-            visible = currentState.value is EventsLoadingState.Error,
+            visible = currentState.value is EventsLoadingState.ShowInfo,
             enter = slideInVertically { fullHeight -> fullHeight + 32 },
             exit = slideOutVertically { fullHeight -> fullHeight + 32 },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .height(64.dp)
         ) {
-            val errorText = (currentState.value as? EventsLoadingState.Error)?.text
+            val infoText = (currentState.value as? EventsLoadingState.ShowInfo)?.text
             Card(
                 modifier = Modifier
                     .padding(8.dp)
@@ -110,14 +115,29 @@ fun MapsScreen() {
                 contentColor = UlTheme.colors.primaryText,
                 shape = RoundedCornerShape(4.dp),
             ) {
-                Box(modifier = Modifier.fillMaxSize().padding(vertical = 4.dp)) {
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .padding(vertical = 4.dp)) {
                     Text(
                         modifier = Modifier.align(Alignment.Center),
-                        text = errorText ?: "",
+                        text = infoText ?: "",
                         style = UlTheme.typography.errorToast,
                         textAlign = TextAlign.Center,
                     )
                 }
+            }
+        }
+        AnimatedVisibility(visible = locationPermissionDialogShown.value, exit = fadeOut()) {
+            Box(modifier = Modifier.fillMaxWidth()) {
+                UlAlertDialog(
+                    onDismissRequest = { locationPermissionDialogShown.value = false },
+                    title = "Permission not granted",
+                    text = "You should give app permission for location access in settings",
+                    agreeText = "Go to settings",
+                    onAgreeClick = { context.openAppSystemSettings() },
+                    denyText = "Cancel",
+                    onDenyClick = { locationPermissionDialogShown.value = false }
+                )
             }
         }
     }
