@@ -97,6 +97,11 @@ fun GoogleMapView(
                 }
             }
         }
+        userLocation?.let {
+            if (it.isFromGps) {
+                UserMarker(state = MarkerState(userLocation.latLng))
+            }
+        }
     }
 }
 

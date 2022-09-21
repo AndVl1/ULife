@@ -8,6 +8,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.Priority.PRIORITY_BALANCED_POWER_ACCURACY
 import com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.channels.awaitClose
@@ -22,9 +23,9 @@ class LocationTrackingDataSource(
     private val client: FusedLocationProviderClient,
 ) {
     private val locationRequest = LocationRequest.create().apply {
-        interval = TimeUnit.SECONDS.toMillis(10)
-        fastestInterval = TimeUnit.SECONDS.toMillis(5)
-        priority = PRIORITY_HIGH_ACCURACY
+        interval = TimeUnit.SECONDS.toMillis(3)
+        fastestInterval = TimeUnit.SECONDS.toMillis(1)
+        priority = PRIORITY_BALANCED_POWER_ACCURACY
         this.maxWaitTime = TimeUnit.MINUTES.toMillis(10)
         smallestDisplacement = 20f
     }

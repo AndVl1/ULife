@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
-import ru.bmstu.ulife.main.maps.model.ErrorType
+import ru.bmstu.ulife.main.maps.model.SnackbarType
 import ru.bmstu.ulife.main.maps.model.EventModel
 import ru.bmstu.ulife.main.maps.model.EventsLoadingState
 import ru.bmstu.ulife.mvi.IntentHandler
@@ -29,7 +29,7 @@ class MapScreenViewModel(
 
     override fun handleEvent(event: MapsScreenEvent) {
         when (val current = _state.value) {
-            is EventsLoadingState.Error -> reduce(event, current)
+            is EventsLoadingState.ShowInfo -> reduce(event, current)
             is EventsLoadingState.Initial -> reduce(event, current)
             is EventsLoadingState.Loaded -> reduce(event, current)
             is EventsLoadingState.Loading -> reduce(event, current)
@@ -44,7 +44,9 @@ class MapScreenViewModel(
             is MapsScreenEvent.MarkerClicked -> {}
             is MapsScreenEvent.CurrentLocationClicked -> {
                 if (!event.hasPermission) {
-                    handleError(ErrorType.LOCATION_UNAVAILABLE)
+                    handleInfo(SnackbarType.LOCATION_UNAVAILABLE)
+                } else {
+                    handleInfo(SnackbarType.LOCATION_LOADING)
                 }
             }
         }
@@ -58,13 +60,15 @@ class MapScreenViewModel(
             is MapsScreenEvent.MarkerClicked -> {}
             is MapsScreenEvent.CurrentLocationClicked -> {
                 if (!event.hasPermission) {
-                    handleError(ErrorType.LOCATION_UNAVAILABLE)
+                    handleInfo(SnackbarType.LOCATION_UNAVAILABLE)
+                } else {
+                    handleInfo(SnackbarType.LOCATION_LOADING)
                 }
             }
         }
     }
 
-    private fun reduce(event: MapsScreenEvent, state: EventsLoadingState.Error) {
+    private fun reduce(event: MapsScreenEvent, state: EventsLoadingState.ShowInfo) {
         when (event) {
             MapsScreenEvent.EnterScreen -> {
                 getEvents()
@@ -72,7 +76,9 @@ class MapScreenViewModel(
             is MapsScreenEvent.MarkerClicked -> {}
             is MapsScreenEvent.CurrentLocationClicked -> {
                 if (!event.hasPermission) {
-                    handleError(ErrorType.LOCATION_UNAVAILABLE)
+                    handleInfo(SnackbarType.LOCATION_UNAVAILABLE)
+                } else {
+                    handleInfo(SnackbarType.LOCATION_LOADING)
                 }
             }
         }
@@ -86,15 +92,17 @@ class MapScreenViewModel(
             is MapsScreenEvent.MarkerClicked -> {}
             is MapsScreenEvent.CurrentLocationClicked -> {
                 if (!event.hasPermission) {
-                    handleError(ErrorType.LOCATION_UNAVAILABLE)
+                    handleInfo(SnackbarType.LOCATION_UNAVAILABLE)
+                } else {
+                    handleInfo(SnackbarType.LOCATION_LOADING)
                 }
             }
         }
     }
 
-    private fun handleError(error: ErrorType) {
+    private fun handleInfo(type: SnackbarType) {
         viewModelScope.launch {
-            _state.emit(EventsLoadingState.Error(error.text))
+            _state.emit(EventsLoadingState.ShowInfo(type.text))
             delay(3000)
             _state.emit(EventsLoadingState.Initial)
         }
