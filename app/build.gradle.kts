@@ -80,6 +80,8 @@ dependencies {
     implementation(libs.coroutines)
     implementation(libs.googlemaps.common)
     implementation(libs.googlemaps.compose)
+    implementation(libs.play.location)
+    implementation(libs.compose.accompanist.permissions)
     implementation(projects.uicommon)
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
@@ -98,7 +100,7 @@ dependencies {
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.5.2")
 
     implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("androidx.fragment:fragment-ktx:1.5.2")
+    implementation("androidx.fragment:fragment-ktx:1.5.3")
 
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.2.1")

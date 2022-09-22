@@ -1,7 +1,7 @@
 package ru.bmstu.ulife.data.repository
 
-import ru.bmstu.ulife.data.states.LoadingState
+import ru.bmstu.ulife.main.maps.model.EventsLoadingState
 
 interface MapPlacesRepository {
-    fun getEvents(): LoadingState
+    suspend fun getEvents(): EventsLoadingState
 }

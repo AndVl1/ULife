@@ -87,6 +87,13 @@ fun MainTheme(
                 UlSize.Big -> 14.sp
             },
             color = colors.primaryText,
+        ),
+        errorToast = TextStyle(
+            fontSize = when (textSize) {
+                UlSize.Small -> 14.sp
+                UlSize.Medium -> 16.sp
+                UlSize.Big -> 18.sp
+            },
         )
     )
 

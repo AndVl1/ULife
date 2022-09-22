@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.main.maps
+package ru.bmstu.ulife.main.maps.ui
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -18,6 +18,7 @@ import com.google.maps.android.compose.MarkerInfoWindowContent
 import com.google.maps.android.compose.MarkerState
 import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.uicommon.theme.UlTheme
+import ru.bmstu.ulife.utils.UserLocation
 
 @Composable
 fun GoogleMapView(
@@ -26,7 +27,8 @@ fun GoogleMapView(
     cameraPositionState: CameraPositionState,
     events: List<EventModel>,
     onEventDetailsClicked: (EventModel) -> Unit,
-    mapUiSettings: MapUiSettings = MapUiSettings()
+    mapUiSettings: MapUiSettings = MapUiSettings(),
+    userLocation: UserLocation? = null,
 ) {
     GoogleMap(
         modifier = modifier,
@@ -56,6 +58,11 @@ fun GoogleMapView(
                         Icon(imageVector = Icons.Default.ArrowForward, contentDescription = "go to")
                     }
                 }
+            }
+        }
+        userLocation?.let {
+            if (it.isFromGps) {
+                UserMarker(state = MarkerState(userLocation.latLng))
             }
         }
     }

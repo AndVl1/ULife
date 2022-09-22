@@ -1,40 +1,30 @@
 package ru.bmstu.ulife.data.models
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
 
 @Serializable
 data class EventModel(
-    @SerialName("eventid")
-    val eventId: Int,
-
-    @SerialName("authorid")
-    val authorId: Int,
-
-    @SerialName("title")
-    val title: String,
-
-    @SerialName("categorytitle")
-    val categoryTitle: String,
-
-    @SerialName("eventavatar")
-    val eventAvatar: String?,
-
     @SerialName("address")
     val address: String,
-
+    @SerialName("authorId")
+    val authorId: Int,
+    @SerialName("categoryTitle")
+    val categoryTitle: String,
     @SerialName("description")
-    val description: String?,
-
-    @SerialName("timestart")
-    val timeStart: String,
-
-    @SerialName("timeend")
-    val timeEnd: String,
-
+    val description: String,
+    @SerialName("eventAvatar")
+    val eventAvatar: String,
+    @SerialName("eventId")
+    val eventId: Int,
     @SerialName("latitude")
-    val latitude: Float,
-
+    val latitude: Double,
     @SerialName("longitude")
-    val longitude: Float
+    val longitude: Double,
+    @SerialName("timeEnd")
+    val timeEnd: Long,
+    @SerialName("timeStart")
+    val timeStart: Long,
+    @SerialName("title")
+    val title: String
 )
