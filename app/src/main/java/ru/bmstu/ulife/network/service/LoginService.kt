@@ -16,21 +16,24 @@ interface LoginService {
     }
 
     suspend fun login(
-        userId: Int
-    ): HttpResponse = initKtorClient().post("http://37.139.33.65:8080/$LOGIN/$userId") {
+        login: String,
+        password: String
+    ): HttpResponse = initKtorClient().post("http://37.139.33.65:8080/$LOGIN/$login/$password") {
         header(HttpHeaders.ContentType, ContentType.Application.Json)
+        header(HttpHeaders.Accept, ContentType.Application.Json)
     }
 
     suspend fun logout(
         userId: Int
     ): HttpResponse = initKtorClient().post("http://37.139.33.65:8080/$LOGOUT/$userId") {
         header(HttpHeaders.ContentType, ContentType.Application.Json)
+        header(HttpHeaders.Accept, ContentType.Application.Json)
     }
 
     companion object Routes {
         const val REGISTER = "register"
-        const val LOGIN = "login" //"login/{userId}"
-        const val LOGOUT = "logout" //"logout/{userId}"
+        const val LOGIN = "login"
+        const val LOGOUT = "logout"
     }
 }
 

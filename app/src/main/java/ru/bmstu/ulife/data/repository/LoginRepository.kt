@@ -3,9 +3,8 @@ package ru.bmstu.ulife.data.repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import ru.bmstu.ulife.data.models.SendToServerUserModel
-import ru.bmstu.ulife.data.models.UserModel
 import ru.bmstu.ulife.data.states.ErrorHandler
-import ru.bmstu.ulife.data.utils.SharedPreferencesStorage
+import ru.bmstu.ulife.utils.SharedPreferencesStorage
 import ru.bmstu.ulife.source.LoginRemoteDataSource
 import ru.bmstu.ulife.data.states.Result
 
@@ -17,14 +16,15 @@ class LoginRepository constructor(
         return flow {
             val responseFeed = remoteDataSource.register(userModel)
             if (responseFeed is Result.RegisterSuccess) {
+                storage.putUserModel(responseFeed.data)
                 emit(Unit)
             }
         }
     }
 
-    suspend fun login(userId: Int): Flow<Int> {
+    suspend fun login(login: String, password: String): Flow<Int> {
         return flow {
-            val responseFeed = remoteDataSource.login(userId)
+            val responseFeed = remoteDataSource.login(login, password)
             if (responseFeed is Result.Success) {
                 emit(responseFeed.data)
             }

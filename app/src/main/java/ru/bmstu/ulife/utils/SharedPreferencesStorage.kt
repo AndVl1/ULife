@@ -1,9 +1,8 @@
-package ru.bmstu.ulife.data.utils
+package ru.bmstu.ulife.utils
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.annotation.Nullable
-import org.koin.androidx.compose.inject
 import org.koin.core.component.KoinComponent
 import ru.bmstu.ulife.data.models.UserModel
 import java.util.Collections.emptySet

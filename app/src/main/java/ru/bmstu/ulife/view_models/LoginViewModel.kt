@@ -23,9 +23,9 @@ class LoginViewModel constructor(private val repository: LoginRepository) : View
         }
     }
 
-    fun login(userId: Int) {
+    fun login(login: String, password: String) {
         viewModelScope.launch {
-            repository.login(userId)
+            repository.login(login, password)
                 .catch { onError(it) }
                 .collect { state.emit(LoginState.LoginSuccess(it)) }
         }

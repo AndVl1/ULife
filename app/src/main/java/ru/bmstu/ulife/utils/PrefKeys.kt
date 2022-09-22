@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.data.utils
+package ru.bmstu.ulife.utils
 
 object PrefsKeys {
     const val KEY_USER_ID = "keyUserId"

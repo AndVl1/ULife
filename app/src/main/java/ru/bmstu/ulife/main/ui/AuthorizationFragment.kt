@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.get
+import org.koin.androidx.viewmodel.ext.android.getViewModelFactory
 import ru.bmstu.ulife.R
 import ru.bmstu.ulife.data.models.UserModel
 import ru.bmstu.ulife.data.states.LoginState
@@ -15,7 +18,10 @@ import ru.bmstu.ulife.databinding.FragmentAuthorizationBinding
 import ru.bmstu.ulife.ext.showSnackbar
 import ru.bmstu.ulife.view_models.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.module._singleInstanceFactory
+import org.koin.core.qualifier.named
 import ru.bmstu.ulife.data.models.SendToServerUserModel
+import ru.bmstu.ulife.utils.SharedPreferencesStorage
 
 
 class AuthorizationFragment : Fragment()  {
@@ -24,6 +30,8 @@ class AuthorizationFragment : Fragment()  {
     private var userModel: UserModel? = null
 
     private var binding: FragmentAuthorizationBinding? = null
+
+    private var storage: SharedPreferencesStorage = get<SharedPreferencesStorage>(named("storage"))
 
     var isRegisterScreen = true
 
@@ -62,11 +70,11 @@ class AuthorizationFragment : Fragment()  {
             is LoginState.LoginSuccess -> {
                 val token = newState.token
                 onAuthorizationClick()
-                //storage.putAuthToken(token)
+                storage.putAuthToken(token)
             }
             is LoginState.RegisterSuccess -> {
                 onAuthorizationClick()
-                //storage.putUserModel(userModel)
+                userModel?.let { storage.putUserModel(it) }
             }
             is LoginState.LogoutSuccess -> {
                 //storage.removeAuthToken()
@@ -103,7 +111,9 @@ class AuthorizationFragment : Fragment()  {
                 if (isRegisterScreen) {
                     registerUser()
                 } else {
-                    loginUser()
+                    val login = signInEtEmail.text.toString()
+                    val password = signInEtPassword.text.toString()
+                    loginUser(login, password)
                 }
             }
             signInBtnSignIn.setOnClickListener {
@@ -142,10 +152,8 @@ class AuthorizationFragment : Fragment()  {
         }
     }
 
-    private fun loginUser() {
-        if (userModel != null) {
-            loginViewModel.login(userModel!!.userId)
-        }
+    private fun loginUser(login: String, password: String) {
+        loginViewModel.login(login, password)
     }
 
     private fun registerUser() {

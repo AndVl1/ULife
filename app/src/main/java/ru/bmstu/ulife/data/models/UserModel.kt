@@ -5,13 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserModel(
-    @SerialName("userid")
-    val userId: Int,
-
-    @SerialName("firstname")
+    @SerialName("firstName")
     val firstName: String,
 
-    @SerialName("lastname")
+    @SerialName("lastName")
     val lastName: String,
 
     @SerialName("email")
@@ -32,8 +29,10 @@ data class UserModel(
     @SerialName("password")
     val password: String,
 
-    @SerialName("role")
-    val role: String,
+    @SerialName("roleId")
+    val roleId: Int,
+
+    val userId: Int,
 
     val token: Int?,
 )

@@ -1,5 +1,6 @@
 package ru.bmstu.ulife.main.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,7 @@ class EventDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val eventModel = EventModel(1, 42, "Марафон для бегунов", "Спортивное мероприятие", "https://sun9-32.userapi.com/impf/AtLcOt4w-WQ5j-_Mak2rN4x0v0CXA2OSs66fKg/BhQLK37Mdrs.jpg?size=1000x667&quality=96&sign=90471f3aaccaf02d193d5cb8bb9845b6&type=album",
@@ -59,8 +61,8 @@ class EventDetailFragment : Fragment() {
 
         adapter = FeedAdapter(viewBinders)
 
-        val userModel = UserModel(1, "Юлия", "Костюнина", "yulia2012394@gmail.com", 21, "Female", "Россия", "Москва", "161026", "USER", 123456)
-        adapter.submitList(listOf(userModel) as List<Any>?)
+        //val userModel = UserModel("Юлия", "Костюнина", "yulia2012394@gmail.com", 21, "Female", "Россия", "Москва", "161026", "USER", 123456)
+        //adapter.submitList(listOf(userModel) as List<Any>?)
     }
 
     private fun onMemberClick(data: UserModel) {

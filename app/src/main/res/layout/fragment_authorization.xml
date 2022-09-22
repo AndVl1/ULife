@@ -133,6 +133,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
+                        android:text="TestName"
                         android:textColor="@color/darkGray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -153,6 +154,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
+                        android:text="TestSecondName"
                         android:textColor="@color/darkGray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -173,6 +175,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
+                        android:text="20"
                         android:textColor="@color/darkGray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -193,6 +196,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:text="Male"
                         android:textColor="@color/darkGray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -213,6 +217,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:text="TestCountry"
                         android:textColor="@color/darkGray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -233,6 +238,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:text="TestCity"
                         android:textColor="@color/darkGray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -252,6 +258,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textWebEmailAddress"
+                        android:text="test@gmail.com"
                         android:textColor="@color/darkGray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -272,6 +279,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
+                        android:text="TestPassword"
                         android:textColor="@color/darkGray" />
                 </com.google.android.material.textfield.TextInputLayout>
 
