@@ -29,6 +29,7 @@ koin = "3.2.0"
 okhttp = "4.10.0"
 room = "2.4.3"
 navigation = "2.5.2"
+coil = "2.2.1"
 
 
 [libraries]
@@ -51,6 +52,7 @@ compose-foundation = { module = "androidx.compose.foundation:foundation", versio
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 compose-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "compose-accompanist" }
+compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 googlemaps-common = { module = "com.google.android.gms:play-services-maps", version.ref = "maps" }
 play-location = { module = "com.google.android.gms:play-services-location", version.ref = "ps-location" }

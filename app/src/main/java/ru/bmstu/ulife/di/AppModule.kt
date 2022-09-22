@@ -4,6 +4,7 @@ import com.google.android.gms.location.LocationServices
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import ru.bmstu.ulife.main.create.CreateEventViewModel
 import ru.bmstu.ulife.main.maps.LocationTrackingDataSource
 import ru.bmstu.ulife.main.maps.MapPlacesDummyRepImpl
 import ru.bmstu.ulife.main.maps.MapPlacesRepImpl
@@ -20,4 +21,8 @@ val mapModule = module {
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
     single { LocationTrackingDataSource(get(), get()) }
     viewModel { MapScreenViewModel(get(), get() ) }
+}
+
+val createEventModule = module {
+    viewModel { CreateEventViewModel() }
 }

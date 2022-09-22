@@ -78,6 +78,7 @@ dependencies {
     implementation(libs.googlemaps.compose)
     implementation(libs.play.location)
     implementation(libs.compose.accompanist.permissions)
+    implementation(libs.compose.coil)
     implementation(projects.uicommon)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
