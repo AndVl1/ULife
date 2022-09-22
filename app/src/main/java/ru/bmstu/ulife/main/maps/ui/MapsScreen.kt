@@ -1,6 +1,11 @@
 package ru.bmstu.ulife.main.maps.ui
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
@@ -13,17 +18,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -37,6 +47,7 @@ import com.google.maps.android.compose.rememberCameraPositionState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
+import ru.bmstu.ulife.R
 import ru.bmstu.ulife.main.maps.MapScreenViewModel
 import ru.bmstu.ulife.main.maps.MapsScreenEvent
 import ru.bmstu.ulife.main.maps.model.EventModel
@@ -67,6 +78,14 @@ fun MapsScreen(
     }
     val locationPermissionDialogShown = remember { mutableStateOf(false) }
     val context = LocalContext.current
+    val infiniteTransition = rememberInfiniteTransition()
+    val angle by infiniteTransition.animateFloat(
+        initialValue = 0F,
+        targetValue = 360F,
+        animationSpec = infiniteRepeatable(
+            animation = tween(2000, easing = LinearEasing)
+        )
+    )
 
     Box(modifier = Modifier.fillMaxSize()) {
         GoogleMapView(
@@ -103,6 +122,22 @@ fun MapsScreen(
             },
         ) {
             Text(text = "My pos")
+        }
+        IconButton(
+            modifier = Modifier
+                .rotate(
+                    if (currentState.value == EventsLoadingState.Loading) {
+                        angle
+                    } else {
+                        0f
+                    }
+                )
+                .align(Alignment.TopCenter),
+            onClick = {
+                viewModel.handleEvent(MapsScreenEvent.UpdateClicked)
+            }
+        ) {
+            Icon(painter = painterResource(id = R.drawable.ic_refresh_48), contentDescription = "Update")
         }
         AnimatedVisibility(
             visible = currentState.value is EventsLoadingState.ShowInfo,

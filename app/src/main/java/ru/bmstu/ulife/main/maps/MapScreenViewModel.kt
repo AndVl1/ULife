@@ -49,6 +49,9 @@ class MapScreenViewModel(
                     handleInfo(SnackbarType.LOCATION_LOADING)
                 }
             }
+            MapsScreenEvent.UpdateClicked -> {
+                getEvents()
+            }
         }
     }
 
@@ -64,6 +67,9 @@ class MapScreenViewModel(
                 } else {
                     handleInfo(SnackbarType.LOCATION_LOADING)
                 }
+            }
+            MapsScreenEvent.UpdateClicked -> {
+                getEvents()
             }
         }
     }
@@ -81,6 +87,9 @@ class MapScreenViewModel(
                     handleInfo(SnackbarType.LOCATION_LOADING)
                 }
             }
+            MapsScreenEvent.UpdateClicked -> {
+                getEvents()
+            }
         }
     }
 
@@ -96,6 +105,9 @@ class MapScreenViewModel(
                 } else {
                     handleInfo(SnackbarType.LOCATION_LOADING)
                 }
+            }
+            MapsScreenEvent.UpdateClicked -> {
+                getEvents()
             }
         }
     }
@@ -116,6 +128,9 @@ class MapScreenViewModel(
                 is EventsLoadingState.Loaded -> {
                     _state.emit(response)
                     _eventsFlow.emit(response.data)
+                }
+                is EventsLoadingState.ShowInfo -> {
+                    handleInfo(SnackbarType.NETWORK_ERROR)
                 }
                 else -> _state.emit(response)
             }
