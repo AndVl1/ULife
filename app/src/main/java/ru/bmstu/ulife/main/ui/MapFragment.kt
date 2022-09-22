@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import ru.bmstu.ulife.databinding.FragmentMapBinding
-import ru.bmstu.ulife.main.maps.MapsScreen
+import ru.bmstu.ulife.main.maps.ui.MapsScreen
 
 class MapFragment : Fragment() {
 

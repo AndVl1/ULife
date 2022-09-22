@@ -31,21 +31,21 @@ class EventDetailFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val eventModel = EventModel(1, 42, "Марафон для бегунов", "Спортивное мероприятие", "https://sun9-32.userapi.com/impf/AtLcOt4w-WQ5j-_Mak2rN4x0v0CXA2OSs66fKg/BhQLK37Mdrs.jpg?size=1000x667&quality=96&sign=90471f3aaccaf02d193d5cb8bb9845b6&type=album",
-            "Москва, парк Измайловский", "В воскресенье проводится первый марафон для жителей общежития МГТУ им. Баумана", "2022-06-20T12:00:00", "2022-06-20T15:00:00",
-            55.7F, 37.6F)
+        //val eventModel = EventModel(1, 42, "Марафон для бегунов", "Спортивное мероприятие", "https://sun9-32.userapi.com/impf/AtLcOt4w-WQ5j-_Mak2rN4x0v0CXA2OSs66fKg/BhQLK37Mdrs.jpg?size=1000x667&quality=96&sign=90471f3aaccaf02d193d5cb8bb9845b6&type=album",
+        //    "Москва, парк Измайловский", "В воскресенье проводится первый марафон для жителей общежития МГТУ им. Баумана", "2022-06-20T12:00:00", "2022-06-20T15:00:00",
+        //       55.7F, 37.6F)
 
         binding.apply {
-            title.text = eventModel.title
-            categoryTitle.text = eventModel.categoryTitle
-            address.text = eventModel.address
-            eventDescription.text = eventModel.description
-            eventDetailTimeStartText.text = "Начало: " + getDateTimeFromTimestamp(eventModel.timeStart)
-            eventDetailTimeEndText.text = "Конец: " + getDateTimeFromTimestamp(eventModel.timeEnd)
-            Glide.with(requireView()).load(eventModel.eventAvatar)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .override(320)
-                .into(eventImage)
+            //title.text = eventModel.title
+            //categoryTitle.text = eventModel.categoryTitle
+            //address.text = eventModel.address
+            //eventDescription.text = eventModel.description
+            //eventDetailTimeStartText.text = "Начало: " + getDateTimeFromTimestamp(eventModel.timeStart)
+            //eventDetailTimeEndText.text = "Конец: " + getDateTimeFromTimestamp(eventModel.timeEnd)
+            //Glide.with(requireView()).load(eventModel.eventAvatar)
+            //    .transition(DrawableTransitionOptions.withCrossFade())
+            //    .override(320)
+            //    .into(eventImage)
         }
         createBinders()
         binding.rvMemberList.adapter = adapter

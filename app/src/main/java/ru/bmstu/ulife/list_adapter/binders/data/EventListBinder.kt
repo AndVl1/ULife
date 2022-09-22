@@ -63,7 +63,7 @@ class EventListBinder(
                 eventTitle.text = item.title
                 eventAddress.text = item.address
                 eventCategoryTitle.text = item.categoryTitle
-                eventDuration.text = getEventDuration(item.timeStart, item.timeEnd)
+                eventDuration.text = getEventDuration(item.timeStart.toString(), item.timeEnd.toString())
                 requestManager.load(item.eventAvatar)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(logoHolder)
