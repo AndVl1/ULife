@@ -6,7 +6,7 @@ import kotlin.random.Random
 
 class MapPlacesDummyRepImpl : MapPlacesRepository{
 
-    override fun getEvents(): EventsLoadingState {
+    override suspend fun getEvents(): EventsLoadingState {
         val points = arrayListOf<EventModel>()
         for (i in 0..100) {
             val event = EventModel(
@@ -17,10 +17,10 @@ class MapPlacesDummyRepImpl : MapPlacesRepository{
                 eventAvatar = "",
                 address = "",
                 description = "",
-                timeStart = "",
-                timeEnd = "",
-                latitude = Random.nextDouble(-90.0, 90.0).toFloat(),
-                longitude = Random.nextDouble(-180.0, 180.0).toFloat(),
+                timeStart = Random.nextLong(),
+                timeEnd = Random.nextLong(),
+                latitude = Random.nextDouble(-90.0, 90.0),
+                longitude = Random.nextDouble(-180.0, 180.0),
             )
             points.add(event)
         }
