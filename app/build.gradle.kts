@@ -44,7 +44,7 @@ android {
                 "String",
                 "IMGBB_API_KEY",
                 if (imgbbKey.isNullOrEmpty()) {
-                    System.getenv("MAPS_API_KEY")
+                    System.getenv("IMGBB_API_KEY")
                 } else {
                     imgbbKey
                 }
