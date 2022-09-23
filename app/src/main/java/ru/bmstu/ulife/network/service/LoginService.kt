@@ -21,6 +21,7 @@ interface LoginService {
     ): HttpResponse = initKtorClient().post("http://37.139.33.65:8080/$LOGIN/$login/$password") {
         header(HttpHeaders.ContentType, ContentType.Application.Json)
         header(HttpHeaders.Accept, ContentType.Application.Json)
+        setBody("")
     }
 
     suspend fun logout(

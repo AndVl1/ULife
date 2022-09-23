@@ -10,10 +10,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import ru.bmstu.ulife.main.create.CreateEventScreen
+import ru.bmstu.ulife.main.maps.model.EventModel
 import ru.bmstu.ulife.main.maps.ui.MapsScreen
 
 @Composable
-fun MainComposeContent() {
+fun MainComposeContent(
+    onEventDetailsClicked: (EventModel) -> Unit,
+) {
     val currentScreenState: MutableState<Screens> = remember {
         mutableStateOf(Screens.MapsScreen)
     }
@@ -36,7 +39,7 @@ fun MainComposeContent() {
                 Screens.MapsScreen -> {
                     MapsScreen(
                         onCreateNewEvent = { currentScreenState.value = Screens.CreateEventScreen(it) },
-                        onEventDetailsClicked = { currentScreenState.value = Screens.EventDetailsScreen(it) }
+                        onEventDetailsClicked = onEventDetailsClicked
                     )
                 }
             }

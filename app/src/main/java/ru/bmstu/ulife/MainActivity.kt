@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MainTheme(darkTheme = true) {
-                MainComposeContent()
+                MainComposeContent({})
             }
         }
     }
