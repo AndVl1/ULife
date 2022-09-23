@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="urn:oasis:names:tc:xliff:document:1.2">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:duration="3000"
+        motion:constraintSetStart="@id/start"
+        motion:motionInterpolator="linear">
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@+id/settings_scrollContainer"
+            motion:touchAnchorSide="top" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@id/settingsHeader_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="4dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/settingsHeader_iv_navigation" />
+
+        <Constraint
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            motion:layout_constraintBottom_toBottomOf="@id/settingsHeader_iv_navigation"
+            motion:layout_constraintStart_toEndOf="@id/settingsHeader_iv_navigation"
+            motion:layout_constraintTop_toTopOf="@id/settingsHeader_iv_navigation" />
+
+        <Constraint
+            android:id="@+id/settingsHeader_frameAvatar"
+            android:layout_width="@dimen/size_avatar_medium"
+            android:layout_height="@dimen/size_avatar_medium"
+            />
+
+        <Constraint
+            android:id="@+id/settings_btn_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchorGravity="bottom|end"
+            app:layout_constraintBottom_toBottomOf="@+id/settingsHeader_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingsHeader_content"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@+id/settingsHeader_content"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/settingsHeader_content" />
+
+        <Constraint android:id="@id/settingsHeader_iv_navigation"/>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@id/settingsHeader_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            motion:layout_constraintStart_toEndOf="@id/settingsHeader_iv_navigation"
+            motion:layout_constraintTop_toTopOf="@id/settingsHeader_iv_navigation"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toBottomOf="@+id/settingsHeader_iv_navigation" />
+
+        <Constraint
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            motion:layout_constraintBottom_toTopOf="parent"
+            motion:layout_constraintStart_toEndOf="@id/settingsHeader_iv_navigation" />
+
+        <Constraint
+            android:id="@+id/settingsHeader_frameAvatar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            />
+
+        <Constraint
+            android:id="@+id/settings_btn_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchorGravity="bottom|end"
+            app:layout_constraintBottom_toBottomOf="@+id/settingsHeader_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingsHeader_content"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:visibility="invisible"/>
+
+        <Constraint
+            android:id="@+id/guideline_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintGuide_begin="65dp" />
+    </ConstraintSet>
+</MotionScene>

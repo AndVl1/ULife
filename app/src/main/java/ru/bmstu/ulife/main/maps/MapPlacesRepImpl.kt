@@ -8,7 +8,8 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
-import ru.bmstu.ulife.main.maps.model.EventModel
+import ru.bmstu.ulife.data.models.EventModel
+import ru.bmstu.ulife.data.repository.MapPlacesRepository
 import ru.bmstu.ulife.main.maps.model.EventsLoadingState
 import ru.bmstu.ulife.main.maps.model.SnackbarType
 

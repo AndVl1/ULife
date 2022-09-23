@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mapFragment"
+        android:icon="@drawable/ic_item_promo"
+        android:title="@string/item_maps" />
+
+    <item
+        android:id="@+id/eventsListFragment"
+        android:icon="@drawable/ic_people"
+        android:title="@string/item_events" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_item_profile"
+        android:title="@string/item_profile" />
+
+</menu>

@@ -1,8 +1,7 @@
-package ru.bmstu.ulife.main.maps.model
+package ru.bmstu.ulife.data.models
+
 import kotlinx.serialization.Serializable
-
 import kotlinx.serialization.SerialName
-
 
 @Serializable
 data class EventModel(

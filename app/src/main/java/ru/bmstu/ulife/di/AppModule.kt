@@ -1,18 +1,33 @@
 package ru.bmstu.ulife.di
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import org.koin.android.ext.koin.androidApplication
 import com.google.android.gms.location.LocationServices
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import ru.bmstu.ulife.data.repository.LoginRepository
+import ru.bmstu.ulife.data.repository.MapPlacesRepository
+import ru.bmstu.ulife.utils.SharedPreferencesStorage
 import ru.bmstu.ulife.main.maps.LocationTrackingDataSource
-import ru.bmstu.ulife.main.maps.MapPlacesDummyRepImpl
 import ru.bmstu.ulife.main.maps.MapPlacesRepImpl
-import ru.bmstu.ulife.main.maps.MapPlacesRepository
 import ru.bmstu.ulife.main.maps.MapScreenViewModel
 import ru.bmstu.ulife.network.initKtorClient
+import ru.bmstu.ulife.network.service.LoginServiceImpl
+import ru.bmstu.ulife.source.LoginRemoteDataSource
+import ru.bmstu.ulife.view_models.LoginViewModel
 
 val appModule = module {
     single { initKtorClient() }
+
+    single(named("storage")) { SharedPreferencesStorage(get()) }
+
+    single { LoginServiceImpl() }
+    single { LoginRepository(SharedPreferencesStorage(get()), LoginRemoteDataSource(get())) }
+    viewModel { LoginViewModel(get()) }
 }
 
 val mapModule = module {
