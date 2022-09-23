@@ -30,16 +30,30 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
+            )
+        }
+        val imgbbKey = gradleLocalProperties(rootDir).getProperty("IMGBB_API_KEY")
+        forEach {
+            it.buildConfigField(
+                "String",
+                "IMGBB_API_KEY",
+                if (imgbbKey.isNullOrEmpty()) {
+                    System.getenv("MAPS_API_KEY")
+                } else {
+                    imgbbKey
+                }
             )
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -79,7 +93,12 @@ dependencies {
     implementation(libs.play.location)
     implementation(libs.compose.accompanist.permissions)
     implementation(libs.compose.coil)
+    implementation(libs.compose.dialogs)
+    implementation(libs.compose.time.dialog)
     implementation(projects.uicommon)
+    implementation("org.slf4j:slf4j-api:1.7.36")
+    implementation("com.github.tony19:logback-android:2.0.0")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")

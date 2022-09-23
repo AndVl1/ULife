@@ -30,6 +30,7 @@ okhttp = "4.10.0"
 room = "2.4.3"
 navigation = "2.5.2"
 coil = "2.2.1"
+dialogs = "0.8.1-rc"
 
 
 [libraries]
@@ -53,6 +54,8 @@ compose-material = { module = "androidx.compose.material:material", version.ref 
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 compose-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "compose-accompanist" }
 compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+compose-dialogs = { module = "io.github.vanpra.compose-material-dialogs:core", version.ref = "dialogs" }
+compose-time-dialog = { module = "io.github.vanpra.compose-material-dialogs:datetime", version.ref = "dialogs" }
 
 googlemaps-common = { module = "com.google.android.gms:play-services-maps", version.ref = "maps" }
 play-location = { module = "com.google.android.gms:play-services-location", version.ref = "ps-location" }

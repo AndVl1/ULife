@@ -52,10 +52,9 @@ fun GoogleMapView(
         }.forEach { model ->
             MarkerInfoWindowContent(
                 state = model.marker,
-                onClick = { _ ->
+                onInfoWindowClick = {
                     onEventDetailsClicked.invoke(model.eventModel)
-                    false
-                },
+                }
             ) {
                 Card(
                     backgroundColor = UlTheme.colors.secondaryBackground,

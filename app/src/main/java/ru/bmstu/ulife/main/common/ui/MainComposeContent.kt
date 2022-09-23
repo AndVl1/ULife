@@ -21,7 +21,9 @@ fun MainComposeContent() {
         Crossfade(targetState = currentScreenState.value) { currentScreen ->
             when (currentScreen) {
                 is Screens.CreateEventScreen -> {
-                    CreateEventScreen(currentScreen.latLng)
+                    CreateEventScreen(currentScreen.latLng) {
+                        currentScreenState.value = Screens.MapsScreen
+                    }
                     BackHandler {
                         currentScreenState.value = Screens.MapsScreen
                     }

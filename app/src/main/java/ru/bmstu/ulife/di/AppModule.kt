@@ -4,9 +4,10 @@ import com.google.android.gms.location.LocationServices
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import ru.bmstu.ulife.main.create.CreateEventViewModel
+import ru.bmstu.ulife.main.create.data.CreateEventRepository
+import ru.bmstu.ulife.main.create.data.CreateEventViewModel
+import ru.bmstu.ulife.main.create.data.ImageUploadService
 import ru.bmstu.ulife.main.maps.LocationTrackingDataSource
-import ru.bmstu.ulife.main.maps.MapPlacesDummyRepImpl
 import ru.bmstu.ulife.main.maps.MapPlacesRepImpl
 import ru.bmstu.ulife.main.maps.MapPlacesRepository
 import ru.bmstu.ulife.main.maps.MapScreenViewModel
@@ -24,5 +25,7 @@ val mapModule = module {
 }
 
 val createEventModule = module {
-    viewModel { CreateEventViewModel() }
+    viewModel { CreateEventViewModel(get()) }
+    single { ImageUploadService(get()) }
+    single { CreateEventRepository(get(), get(), androidContext()) }
 }
