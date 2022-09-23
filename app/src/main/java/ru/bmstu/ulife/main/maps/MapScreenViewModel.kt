@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
-import ru.bmstu.ulife.data.models.EventModel
+import ru.bmstu.ulife.main.maps.model.EventModel
 import ru.bmstu.ulife.data.repository.MapPlacesRepository
 import ru.bmstu.ulife.main.maps.model.EventsLoadingState
 import ru.bmstu.ulife.main.maps.model.SnackbarType

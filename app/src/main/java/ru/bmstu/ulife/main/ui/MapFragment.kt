@@ -23,7 +23,7 @@ class MapFragment : Fragment() {
         val view = binding.root
         binding.composeViewMap.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-            setContent { MapsScreen() }
+            setContent { MapsScreen({}, {}) } // TODO
         }
         return view
     }

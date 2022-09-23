@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.data.models.UserModel
 import ru.bmstu.ulife.databinding.FragmentEventDetailBinding
 import ru.bmstu.ulife.ext.TimeUtils.getDateTimeFromTimestamp
