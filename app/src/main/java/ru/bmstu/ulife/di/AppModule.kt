@@ -9,6 +9,9 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import ru.bmstu.ulife.main.create.data.CreateEventRepository
+import ru.bmstu.ulife.main.create.data.CreateEventViewModel
+import ru.bmstu.ulife.main.create.data.ImageUploadService
 import ru.bmstu.ulife.data.repository.LoginRepository
 import ru.bmstu.ulife.data.repository.MapPlacesRepository
 import ru.bmstu.ulife.utils.SharedPreferencesStorage
@@ -35,4 +38,10 @@ val mapModule = module {
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
     single { LocationTrackingDataSource(get(), get()) }
     viewModel { MapScreenViewModel(get(), get() ) }
+}
+
+val createEventModule = module {
+    viewModel { CreateEventViewModel(get()) }
+    single { ImageUploadService(get()) }
+    single { CreateEventRepository(get(), get(), androidContext()) }
 }

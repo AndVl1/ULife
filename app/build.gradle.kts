@@ -31,17 +31,31 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            buildConfigField("String", "API_URL","http://37.139.33.65:8080/")
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
+            )
+        }
+        val imgbbKey = gradleLocalProperties(rootDir).getProperty("IMGBB_API_KEY")
+        forEach {
+            it.buildConfigField("String", "API_URL","\"http://37.139.33.65:8080/\"")
+            it.buildConfigField(
+                "String",
+                "IMGBB_API_KEY",
+                if (imgbbKey.isNullOrEmpty()) {
+                    System.getenv("IMGBB_API_KEY")
+                } else {
+                    imgbbKey
+                }
             )
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -82,9 +96,13 @@ dependencies {
     implementation(libs.googlemaps.compose)
     implementation(libs.play.location)
     implementation(libs.compose.accompanist.permissions)
+    implementation(libs.compose.coil)
+    implementation(libs.compose.dialogs)
+    implementation(libs.compose.time.dialog)
     implementation(projects.uicommon)
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")

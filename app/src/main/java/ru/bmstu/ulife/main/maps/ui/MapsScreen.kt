@@ -6,6 +6,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -49,6 +50,7 @@ import org.koin.androidx.compose.getViewModel
 import ru.bmstu.ulife.R
 import ru.bmstu.ulife.main.maps.MapScreenViewModel
 import ru.bmstu.ulife.main.maps.MapsScreenEvent
+import ru.bmstu.ulife.main.maps.model.EventModel
 import ru.bmstu.ulife.main.maps.model.EventsLoadingState
 import ru.bmstu.ulife.uicommon.helper.UlAlertDialog
 import ru.bmstu.ulife.uicommon.theme.UlTheme
@@ -57,7 +59,10 @@ import ru.bmstu.ulife.utils.openAppSystemSettings
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun MapsScreen() {
+fun MapsScreen(
+    onCreateNewEvent: (LatLng) -> Unit,
+    onEventDetailsClicked: (EventModel) -> Unit,
+) {
     val viewModel = getViewModel<MapScreenViewModel>()
     val coroutineScope = rememberCoroutineScope()
     val locationPermissionState = rememberPermissionState(
@@ -88,8 +93,9 @@ fun MapsScreen() {
             cameraPositionState = cameraPositionState,
             onMapLoaded = {},
             events = events.value,
-            onEventDetailsClicked = {},
-            userLocation = currentLocation.value
+            onEventDetailsClicked = onEventDetailsClicked,
+            userLocation = currentLocation.value,
+            onCreateNewEvent = { onCreateNewEvent.invoke(it.position) },
         )
         Button(
             modifier = Modifier.align(Alignment.BottomEnd),
