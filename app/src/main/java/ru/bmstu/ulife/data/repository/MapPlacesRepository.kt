@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.main.maps
+package ru.bmstu.ulife.data.repository
 
 import ru.bmstu.ulife.main.maps.model.EventsLoadingState
 

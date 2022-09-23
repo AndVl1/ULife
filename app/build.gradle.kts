@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1"
     kotlin("plugin.serialization")
+    id("androidx.navigation.safeargs") version "2.5.2"
 }
 
 android {
@@ -31,6 +32,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            buildConfigField("String", "API_URL","http://37.139.33.65:8080/")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -60,13 +62,14 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     packagingOptions {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/*"
         }
     }
 }
@@ -86,6 +89,7 @@ dependencies {
     implementation(libs.ktor.negotiation)
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
+    implementation(libs.android.fragment)
     implementation(libs.kotlin.serialization.json)
     implementation(libs.coroutines)
     implementation(libs.googlemaps.common)
@@ -96,8 +100,8 @@ dependencies {
     implementation(libs.compose.dialogs)
     implementation(libs.compose.time.dialog)
     implementation(projects.uicommon)
-    implementation("org.slf4j:slf4j-api:1.7.36")
-    implementation("com.github.tony19:logback-android:2.0.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
@@ -105,4 +109,31 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.2.1")
     debugImplementation("androidx.compose.ui:ui-tooling:1.2.1")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.2.1")
+
+    implementation("androidx.room:room-runtime:2.4.3")
+    implementation("androidx.room:room-ktx:2.4.3")
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.5.2")
+
+    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("androidx.fragment:fragment-ktx:1.5.3")
+
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+
+    implementation("com.google.android.material:material:1.8.0-alpha01")
+
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+
+    implementation("io.insert-koin:koin-android-compat:3.2.1")
+
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/authorizationFragment">
+
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="ru.bmstu.ulife.main.ui.AuthorizationFragment"
+        android:label="AuthorizationFragment"
+        tools:layout="@layout/fragment_authorization">
+        <action
+            android:id="@+id/action_authorizationFragment_to_mapFragment"
+            app:destination="@id/mapFragment" >
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="ru.bmstu.ulife.main.ui.MapFragment"
+        android:label="MapFragment"
+        tools:layout="@layout/fragment_map">
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ru.bmstu.ulife.main.ui.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+    </fragment>
+
+</navigation>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>]
+    <dimen name="margin_mini">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+
+    <dimen name="height_editText">60dp</dimen>
+    <dimen name="height_input_text">74dp</dimen>
+    <dimen name="anchor_point">300dp</dimen>
+    <dimen name="bottom_sheet_peek_height">80dp</dimen>
+    <dimen name="margin_hint_settings">4dp</dimen>
+
+    <dimen name="margin_card_medium">12dp</dimen>
+    <dimen name="margin_secondary_text">5dp</dimen>
+    <dimen name="margin_content_card">28dp</dimen>
+    <dimen name="padding_icon_area">24dp</dimen>
+
+    <dimen name="padding_header">16dp</dimen>
+
+    <!--    SIZES-->
+    <dimen name="size_progress_bar">48dp</dimen>
+    <dimen name="height_business_card_medium">259dp</dimen>
+    <dimen name="width_business_card_medium">323dp</dimen>
+    <dimen name="height_footer">100dp</dimen>
+
+    <!--    RADIUS-->
+    <dimen name="radius_btn">8dp</dimen>
+    <dimen name="radius_news_card">24dp</dimen>
+    <dimen name="radius_promotion_card">24dp</dimen>
+    <dimen name="round_medium">12dp</dimen>
+    <dimen name="round_btn_large">38dp</dimen>
+
+    <!--    ELEVATION-->
+    <dimen name="elevation_cards">8dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <!--    DRAWER LAYOUT-->
+    <dimen name="size_avatar_medium">50dp</dimen>
+    <dimen name="size_avatar_review">50dp</dimen>
+    <dimen name="size_avatar_notification">40dp</dimen>
+    <dimen name="size_avatar_drawer">48dp</dimen>
+    <dimen name="offset_text_from_icon">35dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="stroke_width_cat_select">3dp</dimen>
+    <dimen name="stroke_width_cat_unselect">0dp</dimen>
+
+    <dimen name="activityPadding">16dp</dimen>
+    <dimen name="placeholderImage">60dp</dimen>
+    <dimen name="placeholderTextHeight">8dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+</resources>
