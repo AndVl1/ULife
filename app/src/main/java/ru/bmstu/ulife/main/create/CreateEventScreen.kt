@@ -19,12 +19,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -82,6 +84,9 @@ fun CreateEventScreen(
         onResult = { eventPhoto.value = it }
     )
     val loadingState = viewModel.state.collectAsState()
+    val loadingProgress = remember {
+        mutableStateOf(0f)
+    }
     val locationPermissionDialogShown = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val title = remember { mutableStateOf("") }
@@ -97,7 +102,7 @@ fun CreateEventScreen(
     val startDateTime : LocalDateTime? = multiLet(startDate.value, startTime.value) { date, time ->
         LocalDateTime.of(date, time).plusSeconds(1)
     }
-    val endDateTime : LocalDateTime? = multiLet(startDate.value, startTime.value) { date, time ->
+    val endDateTime : LocalDateTime? = multiLet(endDate.value, endTime.value) { date, time ->
         LocalDateTime.of(date, time).plusSeconds(1)
     }
     Surface(
@@ -267,7 +272,7 @@ fun CreateEventScreen(
                 startDateTime?.let {
                     Row {
                         Text(
-                            text = "Start: $it ${endDateTime?.let { " - End: $it" } ?: ""}",
+                            text = "Start: $it ${endDateTime?.let { end -> " - End: $end" } ?: ""}",
                             style = UlTheme.typography.body,
                             color = UlTheme.colors.primaryText,
                             modifier = Modifier.align(Alignment.CenterVertically)
@@ -298,7 +303,8 @@ fun CreateEventScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp)
-                        .padding(horizontal = 8.dp),
+                        .padding(horizontal = 8.dp)
+                        .clickable { loadingState.value !is EventLoadingState.Loading },
                     onClick = {
                         viewModel.handleEvent(
                             CreateScreenEvent.UploadClicked(
@@ -319,9 +325,9 @@ fun CreateEventScreen(
                             is EventLoadingState.Error,
                             EventLoadingState.Ready,
                             EventLoadingState.Initial -> Text(text = "Upload")
-                            is EventLoadingState.Loading -> CircularProgressIndicator(
+                            is EventLoadingState.Loading -> LinearProgressIndicator(
                                 progress = it.progress,
-                                color = UlTheme.colors.tintColor
+                                color = UlTheme.colors.tintColor,
                             )
                         }
                     }

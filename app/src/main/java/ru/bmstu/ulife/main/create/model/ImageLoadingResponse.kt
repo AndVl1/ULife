@@ -27,13 +27,13 @@ data class Data(
     @SerialName("id")
     val id: String,
     @SerialName("image")
-    val image: Image?,
+    val image: Image? = null,
     @SerialName("medium")
-    val medium: Medium?,
+    val medium: Medium? = null,
     @SerialName("size")
     val size: String,
     @SerialName("thumb")
-    val thumb: Thumb?,
+    val thumb: Thumb? = null,
     @SerialName("time")
     val time: String,
     @SerialName("title")
