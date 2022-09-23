@@ -32,7 +32,9 @@ jobs:
           export $(cat .github/workflows/version.env | xargs)
           echo "::set-output name=major_version::${MAJOR_VERSION}"
       - name: Create local.properties
-        run: touch local.properties
+        run: |
+          touch local.properties 
+          echo IMGBB_API_KEY=\"$IMGBB_API_KEY\" > ./local.properties
       - name: Build production release
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}

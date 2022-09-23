@@ -23,6 +23,8 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - name: Create local.properties
-        run: touch local.properties
+        run: |
+          touch local.properties 
+          echo IMGBB_API_KEY=\"$IMGBB_API_KEY\" > ./local.properties
       - name: Build debug
         run: ./gradlew assembleDebug
