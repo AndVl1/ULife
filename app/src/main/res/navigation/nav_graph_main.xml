@@ -21,6 +21,20 @@
         android:name="ru.bmstu.ulife.main.ui.MapFragment"
         android:label="MapFragment"
         tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_mapFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="ru.bmstu.ulife.main.ui.EventDetailFragment"
+        android:label="EventDetailFragment"
+        tools:layout="@layout/fragment_event_detail">
+        <argument
+            android:name="eventId"
+            app:argType="integer"/>
     </fragment>
 
     <fragment

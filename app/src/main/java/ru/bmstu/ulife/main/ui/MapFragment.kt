@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import ru.bmstu.ulife.databinding.FragmentMapBinding
+import ru.bmstu.ulife.main.common.ui.MainComposeContent
 import ru.bmstu.ulife.main.maps.ui.MapsScreen
+import ru.bmstu.ulife.uicommon.theme.MainTheme
 
 class MapFragment : Fragment() {
 
@@ -23,7 +26,15 @@ class MapFragment : Fragment() {
         val view = binding.root
         binding.composeViewMap.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-            setContent { MapsScreen({}, {}) } // TODO
+            setContent {
+                MainTheme {
+                    MainComposeContent {
+                        val action =
+                            MapFragmentDirections.actionMapFragmentToEventDetailFragment(it.eventId)
+                        findNavController().navigate(action)
+                    }
+                }
+            }
         }
         return view
     }

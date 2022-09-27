@@ -98,7 +98,7 @@ fun MapsScreen(
             onCreateNewEvent = { onCreateNewEvent.invoke(it.position) },
         )
         Button(
-            modifier = Modifier.align(Alignment.BottomEnd),
+            modifier = Modifier.align(Alignment.TopEnd),
             onClick = {
                 when (val status = locationPermissionState.status) {
                     is PermissionStatus.Denied -> {
