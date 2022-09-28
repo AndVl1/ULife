@@ -15,9 +15,9 @@ import ru.bmstu.ulife.main.create.data.ImageUploadService
 import ru.bmstu.ulife.data.repository.LoginRepository
 import ru.bmstu.ulife.data.repository.MapPlacesRepository
 import ru.bmstu.ulife.utils.SharedPreferencesStorage
-import ru.bmstu.ulife.main.maps.LocationTrackingDataSource
-import ru.bmstu.ulife.main.maps.MapPlacesRepImpl
-import ru.bmstu.ulife.main.maps.MapScreenViewModel
+import ru.bmstu.ulife.main.events.maps.LocationTrackingDataSource
+import ru.bmstu.ulife.main.events.maps.MapPlacesRepImpl
+import ru.bmstu.ulife.main.events.maps.MapScreenViewModel
 import ru.bmstu.ulife.network.initKtorClient
 import ru.bmstu.ulife.network.service.LoginServiceImpl
 import ru.bmstu.ulife.source.LoginRemoteDataSource

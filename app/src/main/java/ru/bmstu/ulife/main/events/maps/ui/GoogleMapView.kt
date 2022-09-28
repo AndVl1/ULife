@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.main.maps.ui
+package ru.bmstu.ulife.main.events.maps.ui
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding

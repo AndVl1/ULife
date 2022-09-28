@@ -10,8 +10,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import ru.bmstu.ulife.main.create.CreateEventScreen
+import ru.bmstu.ulife.main.events.common.EventsScreen
 import ru.bmstu.ulife.main.maps.model.EventModel
-import ru.bmstu.ulife.main.maps.ui.MapsScreen
+import ru.bmstu.ulife.main.events.maps.ui.MapsScreen
 
 @Composable
 fun MainComposeContent(
@@ -37,7 +38,7 @@ fun MainComposeContent(
                     }
                 }
                 Screens.MapsScreen -> {
-                    MapsScreen(
+                    EventsScreen(
                         onCreateNewEvent = { currentScreenState.value = Screens.CreateEventScreen(it) },
                         onEventDetailsClicked = onEventDetailsClicked
                     )

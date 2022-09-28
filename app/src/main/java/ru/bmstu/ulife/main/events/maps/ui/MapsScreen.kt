@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.main.maps.ui
+package ru.bmstu.ulife.main.events.maps.ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
@@ -48,10 +48,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 import ru.bmstu.ulife.R
-import ru.bmstu.ulife.main.maps.MapScreenViewModel
-import ru.bmstu.ulife.main.maps.MapsScreenEvent
+import ru.bmstu.ulife.main.events.maps.MapScreenViewModel
+import ru.bmstu.ulife.main.events.maps.MapsScreenEvent
 import ru.bmstu.ulife.main.maps.model.EventModel
-import ru.bmstu.ulife.main.maps.model.EventsLoadingState
+import ru.bmstu.ulife.main.events.maps.model.EventsLoadingState
 import ru.bmstu.ulife.uicommon.helper.UlAlertDialog
 import ru.bmstu.ulife.uicommon.theme.UlTheme
 import ru.bmstu.ulife.utils.UserLocation

@@ -99,6 +99,8 @@ dependencies {
     implementation(libs.compose.coil)
     implementation(libs.compose.dialogs)
     implementation(libs.compose.time.dialog)
+    implementation(libs.compose.accompanist.pager)
+    implementation(libs.compose.accompanist.pagerindicator)
     implementation(projects.uicommon)
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
