@@ -43,11 +43,13 @@ android {
             it.buildConfigField(
                 "String",
                 "IMGBB_API_KEY",
-                if (imgbbKey.isNullOrEmpty()) {
-                    System.getenv("IMGBB_API_KEY")
-                } else {
-                    imgbbKey
-                }
+                "\"" +
+                        (if (imgbbKey.isNullOrEmpty()) {
+                            System.getenv("IMGBB_API_KEY")
+                        } else {
+                            imgbbKey
+                        }) +
+                        "\""
             )
         }
     }
