@@ -24,7 +24,7 @@ import ru.bmstu.ulife.data.models.SendToServerUserModel
 import ru.bmstu.ulife.utils.SharedPreferencesStorage
 
 
-class AuthorizationFragment : Fragment()  {
+class AuthorizationFragment : Fragment() {
     private val loginViewModel by viewModel<LoginViewModel>()
 
     private var userModel: UserModel? = null
@@ -68,20 +68,21 @@ class AuthorizationFragment : Fragment()  {
     private fun onLoginStateChanged(newState: LoginState) {
         when (newState) {
             is LoginState.LoginSuccess -> {
-                val token = newState.token
+                val userWithTokenModel = newState.userWithTokenModel
+                storage.putAuthToken(userWithTokenModel.token)
+                storage.putUserWithTokenModel(userWithTokenModel)
                 onAuthorizationClick()
-                storage.putAuthToken(token)
             }
             is LoginState.RegisterSuccess -> {
-                onAuthorizationClick()
-                userModel?.let { storage.putUserModel(it) }
-            }
-            is LoginState.LogoutSuccess -> {
-                //storage.removeAuthToken()
-
+                if (storage.getUserEmail() != null && storage.getUserPassword() != null) {
+                    loginViewModel.login(
+                        storage.getUserEmail().toString(),
+                        storage.getUserPassword().toString()
+                    )
+                }
             }
             is LoginState.Error -> onError(newState.textId)
-            else -> { }
+            else -> {}
         }
     }
 
@@ -133,6 +134,7 @@ class AuthorizationFragment : Fragment()  {
             textHasAccount.text = getString(R.string.sign_in_already_has_account)
             signInBtnSignIn.text = getString(R.string.action_sign_in)
             signInTilFirstName.visibility = View.VISIBLE
+            signUpTilGender.visibility = View.GONE
             signInTilSecondName.visibility = View.VISIBLE
             signUpTilAge.visibility = View.VISIBLE
             signUpTilCity.visibility = View.VISIBLE
@@ -145,6 +147,7 @@ class AuthorizationFragment : Fragment()  {
             textHasAccount.text = getString(R.string.sign_in_hasnt_account)
             signInBtnSignIn.text = getString(R.string.action_sign_up)
             signInTilFirstName.visibility = View.GONE
+            signUpTilGender.visibility = View.GONE
             signInTilSecondName.visibility = View.GONE
             signUpTilAge.visibility = View.GONE
             signUpTilCity.visibility = View.GONE

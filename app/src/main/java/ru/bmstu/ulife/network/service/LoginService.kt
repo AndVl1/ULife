@@ -26,7 +26,7 @@ interface LoginService {
 
     suspend fun logout(
         userId: Int
-    ): HttpResponse = initKtorClient().post("http://37.139.33.65:8080/$LOGOUT/$userId") {
+    ): HttpResponse = initKtorClient().get("http://37.139.33.65:8080/$LOGOUT/$userId") {
         header(HttpHeaders.ContentType, ContentType.Application.Json)
         header(HttpHeaders.Accept, ContentType.Application.Json)
     }

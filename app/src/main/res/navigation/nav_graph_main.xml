@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/authorizationFragment">
+    app:startDestination="@id/mapFragment">
 
     <fragment
         android:id="@+id/authorizationFragment"
@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_authorization">
         <action
             android:id="@+id/action_authorizationFragment_to_mapFragment"
-            app:destination="@id/mapFragment" >
+            app:destination="@id/mapFragment">
         </action>
     </fragment>
 
@@ -24,6 +24,10 @@
         <action
             android:id="@+id/action_mapFragment_to_eventDetailFragment"
             app:destination="@id/eventDetailFragment">
+        </action>
+        <action
+            android:id="@+id/action_mapFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment">
         </action>
     </fragment>
 
@@ -42,6 +46,10 @@
         android:name="ru.bmstu.ulife.main.ui.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment">
+        </action>
     </fragment>
 
 </navigation>

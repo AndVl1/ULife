@@ -63,8 +63,7 @@
                 style="@style/TextHeadline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="@string/profile_title"
-                android:text="Юлия Костюнина"/>
+                android:text="@string/profile_title"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/settingsHeader_tv_email"
@@ -72,8 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="4dp"
-                android:text="yulia2012394@gmail.com"
-                tools:text="@string/hint_email" />
+                android:text="@string/hint_email" />
         </LinearLayout>
     </LinearLayout>
 
@@ -131,7 +129,7 @@
                     style="@style/Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Юлия Костюнина" />
+                    tools:text="Юлия Костюнина" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/settings_tv_hintName"
@@ -159,7 +157,7 @@
                     style="@style/Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="yulia2012394@gmail.com" />
+                    tools:text="yulia2012394@gmail.com" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/settings_tv_hintEmail"
@@ -188,7 +186,7 @@
                     style="@style/Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="21 год" />
+                    tools:text="21 год" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/settings_tv_hintBirthday"
@@ -224,7 +222,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_hint_settings"
-                    android:text="Женский" />
+                    tools:text="Женский" />
 
                 <include layout="@layout/separator" />
             </LinearLayout>
@@ -244,7 +242,7 @@
                     style="@style/Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/country_example" />
+                    tools:text="@string/country_example" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/settings_tv_hintAddress"
@@ -273,7 +271,7 @@
                     style="@style/Subtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/city_example" />
+                    tools:text="@string/city_example" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/settings_tv_hintCity"
@@ -285,6 +283,20 @@
                     android:text="@string/city" />
 
                 <include layout="@layout/separator" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:gravity="center">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:id="@+id/logoutButton"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_logout"/>
+
             </LinearLayout>
 
             <Space

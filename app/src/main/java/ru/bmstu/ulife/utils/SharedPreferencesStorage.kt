@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.annotation.Nullable
 import org.koin.core.component.KoinComponent
 import ru.bmstu.ulife.data.models.UserModel
+import ru.bmstu.ulife.data.models.UserWithTokenModel
 import java.util.Collections.emptySet
 
 class SharedPreferencesStorage constructor(
@@ -274,6 +275,19 @@ class SharedPreferencesStorage constructor(
         putUserCountry(userModel.country)
         putUserCity(userModel.city)
         putUserGender(userModel.gender)
+    }
+
+    fun putUserWithTokenModel(userModel: UserWithTokenModel) {
+        putUserId(userModel.userId)
+        putUserFirstName(userModel.firstName)
+        putUserSecondName(userModel.lastName)
+        putUserEmail(userModel.email)
+        putUserPassword(userModel.password)
+        putUserAge(userModel.age)
+        putUserCountry(userModel.country)
+        putUserCity(userModel.city)
+        putUserGender(userModel.gender)
+        putAuthToken(userModel.token)
     }
 
     fun removeAuthToken() {
