@@ -9,7 +9,8 @@ val baseLightPalette = UlColors(
     secondaryText = Color(0xCC7A8A99),
     tintColor = Color.Magenta,
     controlColor = Color(0xFF7A8A99),
-    errorColor = Color.Red
+    errorColor = Color.Red,
+    placeholderColor = Color.Gray
 )
 
 val baseDarkPalette = UlColors(
@@ -19,7 +20,8 @@ val baseDarkPalette = UlColors(
     secondaryText = Color(0xCC7A8A99),
     tintColor = Color.Magenta,
     controlColor = Color(0xFF7A8A99),
-    errorColor = Color.Red
+    errorColor = Color.Red,
+    placeholderColor = Color(0xFF191E23),
 )
 
 val purpleLightPalette = baseLightPalette.copy(

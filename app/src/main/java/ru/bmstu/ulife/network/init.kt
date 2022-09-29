@@ -13,7 +13,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 
-    fun initKtorClient() = HttpClient(OkHttp) {
+fun initKtorClient() = HttpClient(OkHttp) {
     install(Logging) {
         logger = CustomAndroidHttpLogger
         level = LogLevel.ALL

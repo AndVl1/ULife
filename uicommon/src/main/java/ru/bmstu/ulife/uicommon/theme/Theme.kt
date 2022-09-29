@@ -46,7 +46,7 @@ fun MainTheme(
             UlSize.Big -> 16.dp
         },
         cornerStyle = if (corners == UlCorners.Rounded) {
-            RoundedCornerShape(8.dp)
+            RoundedCornerShape(16.dp)
         } else {
             RoundedCornerShape(2.dp)
         }
