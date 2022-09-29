@@ -27,12 +27,12 @@ class MapFragment : Fragment() {
         binding.composeViewMap.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                MainTheme {
-                    MainComposeContent {
+                MainTheme(darkTheme = false) {
+                    MainComposeContent (onEventDetailsClicked = {
                         val action =
                             MapFragmentDirections.actionMapFragmentToEventDetailFragment(it.eventId)
                         findNavController().navigate(action)
-                    }
+                    })
                 }
             }
         }

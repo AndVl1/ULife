@@ -5,18 +5,23 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import ru.bmstu.ulife.main.create.CreateEventScreen
 import ru.bmstu.ulife.main.events.common.EventsScreen
 import ru.bmstu.ulife.main.maps.model.EventModel
 import ru.bmstu.ulife.main.events.maps.ui.MapsScreen
+import ru.bmstu.ulife.uicommon.theme.UlTheme
 
 @Composable
 fun MainComposeContent(
     onEventDetailsClicked: (EventModel) -> Unit,
+    isInDark: Boolean = false,
+    onModeSwitchClicked: () -> Unit = {},
 ) {
     val currentScreenState: MutableState<Screens> = remember {
         mutableStateOf(Screens.MapsScreen)
@@ -40,7 +45,9 @@ fun MainComposeContent(
                 Screens.MapsScreen -> {
                     EventsScreen(
                         onCreateNewEvent = { currentScreenState.value = Screens.CreateEventScreen(it) },
-                        onEventDetailsClicked = onEventDetailsClicked
+                        onEventDetailsClicked = onEventDetailsClicked,
+                        isInDark = isInDark,
+                        onModeSwitchClicked = onModeSwitchClicked
                     )
                 }
             }

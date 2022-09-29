@@ -105,6 +105,7 @@ dependencies {
     implementation(libs.compose.accompanist.pagerindicator)
     implementation(libs.compose.accompanist.swiperefresh)
     implementation(libs.compose.accompanist.placeholder)
+    implementation(libs.compose.accompanist.systemui)
     implementation(projects.uicommon)
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.2")

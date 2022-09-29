@@ -19,6 +19,7 @@ import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -45,17 +46,18 @@ import ru.bmstu.ulife.utils.applyIf
 fun EventItem(
     model: EventModel,
     isPlaceholder: Boolean = false,
-    onClick: (Int) -> Unit,
+    onClick: () -> Unit,
 ) {
+    val ripple = rememberRipple(bounded = true)
     Card(
         modifier = Modifier
             .padding(UlTheme.shape.padding)
             .height(300.dp)
-            .applyIf(!isPlaceholder) {
+            .conditional(!isPlaceholder) {
                 clickable(
                     interactionSource = MutableInteractionSource(),
-                    onClick = { onClick.invoke(model.eventId) },
-                    indication = rememberRipple(bounded = true),
+                    onClick = onClick,
+                    indication = ripple,
                 )
             },
         shape = UlTheme.shape.cornerStyle,
