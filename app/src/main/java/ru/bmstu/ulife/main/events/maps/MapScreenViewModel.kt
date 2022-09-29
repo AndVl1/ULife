@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.main.maps
+package ru.bmstu.ulife.main.events.maps
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import ru.bmstu.ulife.main.maps.model.EventModel
 import ru.bmstu.ulife.data.repository.MapPlacesRepository
-import ru.bmstu.ulife.main.maps.model.EventsLoadingState
-import ru.bmstu.ulife.main.maps.model.SnackbarType
+import ru.bmstu.ulife.main.events.maps.model.EventsLoadingState
+import ru.bmstu.ulife.main.events.maps.model.SnackbarType
 import ru.bmstu.ulife.mvi.IntentHandler
 import ru.bmstu.ulife.utils.UserLocation
 

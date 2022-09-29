@@ -59,6 +59,11 @@ compose-foundation = { module = "androidx.compose.foundation:foundation", versio
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activity" }
 compose-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "compose-accompanist" }
+compose-accompanist-pager = { module = "com.google.accompanist:accompanist-pager", version.ref = "compose-accompanist" }
+compose-accompanist-pagerindicator = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "compose-accompanist" }
+compose-accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "compose-accompanist" }
+compose-accompanist-placeholder = { module = "com.google.accompanist:accompanist-placeholder", version.ref = "compose-accompanist" }
+compose-accompanist-systemui = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "compose-accompanist" }
 compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 compose-dialogs = { module = "io.github.vanpra.compose-material-dialogs:core", version.ref = "dialogs" }
 compose-time-dialog = { module = "io.github.vanpra.compose-material-dialogs:datetime", version.ref = "dialogs" }

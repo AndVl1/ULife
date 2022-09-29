@@ -41,12 +41,12 @@ fun MainTheme(
 
     val shapes = UlShape(
         padding = when (paddingSize) {
-            UlSize.Small -> 12.dp
-            UlSize.Medium -> 16.dp
-            UlSize.Big -> 20.dp
+            UlSize.Small -> 8.dp
+            UlSize.Medium -> 12.dp
+            UlSize.Big -> 16.dp
         },
         cornerStyle = if (corners == UlCorners.Rounded) {
-            RoundedCornerShape(8.dp)
+            RoundedCornerShape(16.dp)
         } else {
             RoundedCornerShape(2.dp)
         }

@@ -61,11 +61,17 @@ class CreateEventRepository(
         withContext(Dispatchers.IO) {
             val stream = context.contentResolver.openInputStream(image)
             val imageBytes = stream?.readBytes()?.toBase64()
-            imageBytes?.let {
-                when (val response = imageUploadService.uploadImage(imageBytes, imageUploadProgressListener)) {
-                    is ImageLoadingState.Error -> return@withContext null
-                    is ImageLoadingState.Success -> return@withContext response.data.data.url
+            return@withContext try {
+                imageBytes?.let {
+                    when (val response = imageUploadService.uploadImage(imageBytes, imageUploadProgressListener)) {
+                        is ImageLoadingState.Error -> return@withContext null
+                        is ImageLoadingState.Success -> return@withContext response.data.data.url
+                    }
                 }
+            } catch (e: Exception) {
+                return@withContext null
+            } finally {
+                stream?.close()
             }
         }
 

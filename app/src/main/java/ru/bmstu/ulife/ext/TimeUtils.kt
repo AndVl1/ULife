@@ -1,6 +1,9 @@
 package ru.bmstu.ulife.ext
 
 import android.annotation.SuppressLint
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
 
@@ -49,5 +52,12 @@ object TimeUtils {
         val minutes = s.substring(14, 16)
         val seconds = s.substring(17, 19)
         return "$day.$month.$year, $hours:$minutes"
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getDateTimeFromLongTimestamp(time: Long): String {
+        val date = Date(time)
+        val format = SimpleDateFormat("d.MM.yyyy HH:mm")
+        return format.format(date)
     }
 }

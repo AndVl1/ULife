@@ -15,6 +15,7 @@ data class UlColors(
     val tintColor: Color,
     val controlColor: Color,
     val errorColor: Color,
+    val placeholderColor: Color,
 )
 
 data class UlShape(

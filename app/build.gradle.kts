@@ -43,11 +43,13 @@ android {
             it.buildConfigField(
                 "String",
                 "IMGBB_API_KEY",
-                if (imgbbKey.isNullOrEmpty()) {
-                    System.getenv("IMGBB_API_KEY")
-                } else {
-                    imgbbKey
-                }
+                "\"" +
+                        (if (imgbbKey.isNullOrEmpty()) {
+                            System.getenv("IMGBB_API_KEY")
+                        } else {
+                            imgbbKey
+                        }) +
+                        "\""
             )
         }
     }
@@ -99,6 +101,11 @@ dependencies {
     implementation(libs.compose.coil)
     implementation(libs.compose.dialogs)
     implementation(libs.compose.time.dialog)
+    implementation(libs.compose.accompanist.pager)
+    implementation(libs.compose.accompanist.pagerindicator)
+    implementation(libs.compose.accompanist.swiperefresh)
+    implementation(libs.compose.accompanist.placeholder)
+    implementation(libs.compose.accompanist.systemui)
     implementation(projects.uicommon)
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
