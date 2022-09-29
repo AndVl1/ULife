@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.main.maps
+package ru.bmstu.ulife.main.events.maps
 
 sealed class MapsScreenEvent {
     object EnterScreen : MapsScreenEvent()

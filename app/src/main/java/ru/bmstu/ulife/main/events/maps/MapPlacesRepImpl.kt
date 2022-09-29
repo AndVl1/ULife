@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.main.maps
+package ru.bmstu.ulife.main.events.maps
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -10,8 +10,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
 import ru.bmstu.ulife.main.maps.model.EventModel
 import ru.bmstu.ulife.data.repository.MapPlacesRepository
-import ru.bmstu.ulife.main.maps.model.EventsLoadingState
-import ru.bmstu.ulife.main.maps.model.SnackbarType
+import ru.bmstu.ulife.main.events.maps.model.EventsLoadingState
+import ru.bmstu.ulife.main.events.maps.model.SnackbarType
 
 class MapPlacesRepImpl(private val ktor: HttpClient): MapPlacesRepository {
     private val job = Job()

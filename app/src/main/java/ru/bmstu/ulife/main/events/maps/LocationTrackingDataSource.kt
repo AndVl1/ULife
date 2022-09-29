@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.main.maps
+package ru.bmstu.ulife.main.events.maps
 
 import android.Manifest
 import android.content.Context

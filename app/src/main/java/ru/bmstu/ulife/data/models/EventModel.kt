@@ -27,4 +27,20 @@ data class EventModel(
     val timeStart: Long,
     @SerialName("title")
     val title: String
-)
+) {
+    companion object {
+        val EMPTY = EventModel(
+            address = "",
+            authorId = -1,
+            categoryTitle = "",
+            description = "",
+            eventAvatar = "",
+            eventId = -1,
+            latitude = -1.0,
+            longitude = -1.0,
+            timeEnd = -1,
+            timeStart = -1,
+            title = "",
+        )
+    }
+}

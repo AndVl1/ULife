@@ -6,14 +6,14 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import ru.bmstu.ulife.di.appModule
 import ru.bmstu.ulife.di.createEventModule
-import ru.bmstu.ulife.di.mapModule
+import ru.bmstu.ulife.di.eventsListModule
 
 class App: Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
             androidLogger()
-            modules(appModule, mapModule, createEventModule)
+            modules(appModule, eventsListModule, createEventModule)
             androidContext(this@App)
         }
     }

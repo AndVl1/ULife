@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import ru.bmstu.ulife.databinding.FragmentMapBinding
 import ru.bmstu.ulife.main.common.ui.MainComposeContent
-import ru.bmstu.ulife.main.maps.ui.MapsScreen
+import ru.bmstu.ulife.main.events.maps.ui.MapsScreen
 import ru.bmstu.ulife.uicommon.theme.MainTheme
 
 class MapFragment : Fragment() {
@@ -27,12 +27,12 @@ class MapFragment : Fragment() {
         binding.composeViewMap.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                MainTheme {
-                    MainComposeContent {
+                MainTheme(darkTheme = false) {
+                    MainComposeContent (onEventDetailsClicked = {
                         val action =
                             MapFragmentDirections.actionMapFragmentToEventDetailFragment(it.eventId)
                         findNavController().navigate(action)
-                    }
+                    })
                 }
             }
         }

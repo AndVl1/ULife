@@ -1,4 +1,4 @@
-package ru.bmstu.ulife.main.maps.ui
+package ru.bmstu.ulife.main.events.maps.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
