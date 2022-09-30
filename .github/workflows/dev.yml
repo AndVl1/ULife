@@ -76,6 +76,7 @@ jobs:
         id: artifacts_copy
         run: |
           mkdir artifacts
+          cp version.txt artifacts/version.txt
           cp ${{ steps.sign_apk_release.outputs.signedReleaseFile }} artifacts/app-release-`cat version.txt`.apk
           echo "::set-output name=path::artifacts/"
       - name: Upload Artifacts
