@@ -108,7 +108,7 @@ fun EventItem(
                                     highlightColor = UlTheme.colors.primaryBackground,
                                 )
                             ),
-                        text = model.title,
+                        text = model.title.toString(),
                         color = if (!isPlaceholder) UlTheme.colors.primaryText else Color.Unspecified,
                         style = if (!isPlaceholder) UlTheme.typography.body else LocalTextStyle.current,
                         fontWeight = FontWeight.Bold,
@@ -128,7 +128,7 @@ fun EventItem(
                                     highlightColor = UlTheme.colors.primaryBackground,
                                 )
                             ),
-                        text = model.description,
+                        text = model.description.toString(),
                         color = UlTheme.colors.primaryText,
                         style = UlTheme.typography.caption,
                     )
@@ -146,7 +146,7 @@ fun EventItem(
                                     highlightColor = UlTheme.colors.primaryBackground,
                                 )
                             ),
-                        text = model.address,
+                        text = model.address.toString(),
                         color = UlTheme.colors.primaryText.copy(alpha = .6f),
                         style = UlTheme.typography.body,
                     )
@@ -161,8 +161,8 @@ fun EventItem(
                     shape = UlTheme.shape.cornerStyle
                 ) {
                     Text(
-                        text = "${TimeUtils.getDateTimeFromLongTimestamp(model.timeStart)} -" +
-                                " ${TimeUtils.getDateTimeFromLongTimestamp(model.timeEnd)}",
+                        text = "${TimeUtils.getDateTimeFromLongTimestamp(model.timeStart!!)} -" +
+                                " ${TimeUtils.getDateTimeFromLongTimestamp(model.timeEnd!!)}",
                         color = UlTheme.colors.primaryText,
                         style = UlTheme.typography.body,
                         modifier = Modifier.padding(4.dp)

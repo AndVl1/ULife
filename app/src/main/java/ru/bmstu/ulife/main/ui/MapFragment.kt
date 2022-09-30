@@ -33,16 +33,17 @@ class MapFragment : Fragment() {
     ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
         val view = binding.root
-        if (storage.getAuthToken() == 0) {
+        if (storage.getAuthToken() == null || storage.getAuthToken() == "0") {
             navigateToAuthorizationFragment()
         } else {
+            ContainerMainActivity().onShowNavigator()
             binding.composeViewMap.apply {
                 setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
                 setContent {
                     MainTheme(darkTheme = false) {
                         MainComposeContent (onEventDetailsClicked = {
                             val action =
-                                MapFragmentDirections.actionMapFragmentToEventDetailFragment(it.eventId)
+                                MapFragmentDirections.actionMapFragmentToEventDetailFragment(it)
                             findNavController().navigate(action)
                         })
                     }

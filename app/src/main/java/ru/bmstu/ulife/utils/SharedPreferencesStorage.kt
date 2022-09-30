@@ -35,9 +35,9 @@ class SharedPreferencesStorage constructor(
             .apply()
     }
 
-    fun putAuthToken(token: Int) {
+    fun putAuthToken(token: String) {
         storage.edit()
-            .putInt(PrefsKeys.KEY_TOKEN, token)
+            .putString(PrefsKeys.KEY_TOKEN, token)
             .apply()
     }
 
@@ -128,7 +128,7 @@ class SharedPreferencesStorage constructor(
 
     fun getLongitude(): Float = storage.getFloat("lng", 37.61556f)
 
-    fun getAuthToken(): Int = storage.getInt(PrefsKeys.KEY_TOKEN, 0)
+    fun getAuthToken(): String? = storage.getString(PrefsKeys.KEY_TOKEN, "0")
 
     @Nullable
     fun getProfileId(): String? = storage.getString(PrefsKeys.KEY_PROFILE_ID, null)
@@ -191,6 +191,7 @@ class SharedPreferencesStorage constructor(
 
 
     fun putUserId(data: Int) {
+        println("LOG put userId=" + data)
         storage.edit()
             .putInt(PrefsKeys.KEY_USER_ID, data)
             .apply()
@@ -266,6 +267,7 @@ class SharedPreferencesStorage constructor(
     fun getUserAge(): Int = storage.getInt(PrefsKeys.KEY_USER_AGE, 0)
 
     fun putUserModel(userModel: UserModel) {
+        println("LOG: put user model = " + userModel)
         putUserId(userModel.userId)
         putUserFirstName(userModel.firstName)
         putUserSecondName(userModel.lastName)
@@ -278,6 +280,7 @@ class SharedPreferencesStorage constructor(
     }
 
     fun putUserWithTokenModel(userModel: UserWithTokenModel) {
+        println("LOG put user with token: "+ userModel)
         putUserId(userModel.userId)
         putUserFirstName(userModel.firstName)
         putUserSecondName(userModel.lastName)

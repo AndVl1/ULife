@@ -12,7 +12,6 @@ import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import kotlinx.coroutines.launch
 import ru.bmstu.ulife.uicommon.theme.UlTheme
-import ru.bmstu.ulife.utils.applyIf
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable

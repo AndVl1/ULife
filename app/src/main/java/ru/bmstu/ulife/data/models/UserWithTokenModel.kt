@@ -2,7 +2,6 @@ package ru.bmstu.ulife.data.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
 @Serializable
 data class UserWithTokenModel(
@@ -37,5 +36,5 @@ data class UserWithTokenModel(
     val userId: Int,
 
     @SerialName("token")
-    val token: Int
+    val token: String
 )

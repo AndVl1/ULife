@@ -37,8 +37,8 @@
         android:label="EventDetailFragment"
         tools:layout="@layout/fragment_event_detail">
         <argument
-            android:name="eventId"
-            app:argType="integer"/>
+            android:name="eventModel"
+            app:argType="ru.bmstu.ulife.main.maps.model.EventModel"/>
     </fragment>
 
     <fragment

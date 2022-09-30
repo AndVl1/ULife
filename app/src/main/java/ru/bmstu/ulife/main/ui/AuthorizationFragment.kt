@@ -69,7 +69,7 @@ class AuthorizationFragment : Fragment() {
         when (newState) {
             is LoginState.LoginSuccess -> {
                 val userWithTokenModel = newState.userWithTokenModel
-                storage.putAuthToken(userWithTokenModel.token)
+                println("LOG login success: " + userWithTokenModel)
                 storage.putUserWithTokenModel(userWithTokenModel)
                 onAuthorizationClick()
             }

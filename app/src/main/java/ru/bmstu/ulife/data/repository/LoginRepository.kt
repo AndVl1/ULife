@@ -35,7 +35,7 @@ class LoginRepository constructor(
     suspend fun logout(userId: Int) {
         when (val response = remoteDataSource.logout(userId)) {
             is Result.Success -> {
-                storage.putAuthToken(0)
+                storage.putAuthToken("0")
             }
             is Result.Error -> onError(response.code)
             else -> {}
