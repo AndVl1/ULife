@@ -3,6 +3,7 @@ package ru.bmstu.ulife.main.create.data
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import io.ktor.client.HttpClient
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
@@ -69,6 +70,7 @@ class CreateEventRepository(
                     }
                 }
             } catch (e: Exception) {
+                FirebaseCrashlytics.getInstance().recordException(e)
                 return@withContext null
             } finally {
                 stream?.close()

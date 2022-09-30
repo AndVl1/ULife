@@ -9,6 +9,7 @@ env:
   MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
   IMGBB_API_KEY: ${{ secrets.IMGBB_API_KEY }}
   POSITIONSTACK_API_KEY: ${{ secrets.POSITIONSTACK_API_KEY }}
+  GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_GSON }}
 
 jobs:
   build:
@@ -28,5 +29,10 @@ jobs:
           touch local.properties 
           echo IMGBB_API_KEY=\"$IMGBB_API_KEY\" > ./local.properties
           echo POSITIONSTACK_API_KEY=\"POSITIONSTACK_API_KEY\" > ./local.properties
+          echo POSITIONSTACK_API_KEY=\"$POSITIONSTACK_API_KEY\" > ./local.properties
+      - name: Create google-services
+        run: |
+          cat /home/runner/work/ULife/ULife/app/google-services.json | base64
+          echo $GOOGLE_SERVICES_GSON > /home/runner/work/ULife/ULife/app/google-services.json
       - name: Build debug
         run: ./gradlew assembleDebug
