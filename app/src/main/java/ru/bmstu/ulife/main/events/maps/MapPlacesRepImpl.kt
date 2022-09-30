@@ -1,6 +1,7 @@
 package ru.bmstu.ulife.main.events.maps
 
 import android.util.Log
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -47,11 +48,13 @@ class MapPlacesRepImpl(private val ktor: HttpClient): MapPlacesRepository {
                     }
                 } catch (e: Exception) {
                     Log.e("Repo", e.toString())
+                    FirebaseCrashlytics.getInstance().recordException(e)
                     data
                 }
                 EventsLoadingState.Loaded(finalData)
             }
         } catch (e: Exception) {
+            FirebaseCrashlytics.getInstance().recordException(e)
             EventsLoadingState.ShowInfo(SnackbarType.NETWORK_ERROR.text)
         }
     }
