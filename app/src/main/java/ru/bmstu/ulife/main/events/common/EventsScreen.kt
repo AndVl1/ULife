@@ -81,7 +81,7 @@ fun EventsScreen(
                 modifier = Modifier.fillMaxSize(),
                 state = pagesState,
                 count = screens.size,
-                userScrollEnabled = false
+                userScrollEnabled = screens[pagesState.currentPage] !is TabItem.MapsScreen
             ) { page ->
                 screens[page].screen()
             }

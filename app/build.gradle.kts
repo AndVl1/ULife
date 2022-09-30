@@ -39,7 +39,7 @@ android {
         }
         val imgbbKey = gradleLocalProperties(rootDir).getProperty("IMGBB_API_KEY")
         forEach {
-            it.buildConfigField("String", "API_URL","\"http://37.139.33.65:8080/\"")
+            it.buildConfigField("String", "API_URL","\"http://37.139.33.65:8080\"")
             it.buildConfigField(
                 "String",
                 "IMGBB_API_KEY",
@@ -50,6 +50,11 @@ android {
                             imgbbKey
                         }) +
                         "\""
+            )
+            it.buildConfigField(
+                "String",
+                "POSITIONSTACK_API_KEY",
+                "\"${gradleLocalProperties(rootDir).getProperty(" POSITIONSTACK_API_KEY ")}\""
             )
         }
     }

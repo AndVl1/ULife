@@ -29,15 +29,18 @@ fun EventsList(
         onRefresh = { viewModel.handleEvent(EventsListMviEvent.UpdateRequested) }
     ) {
         LazyColumn {
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+            }
             if (currentState.value == EventsLoadingState.Loading && events.value.isEmpty()) {
                 items(10) {
                     EventItem(model = EventModel.EMPTY, onClick = {}, isPlaceholder = true)
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             } else {
                 items(events.value) { model ->
                     EventItem(model = model, onClick = { onEventDetailsClicked.invoke(model) })
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
         }
