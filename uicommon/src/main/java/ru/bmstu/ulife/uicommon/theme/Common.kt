@@ -1,5 +1,8 @@
 package ru.bmstu.ulife.uicommon.theme
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.AnimationSpec
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color

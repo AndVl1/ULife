@@ -51,7 +51,7 @@ fun EventItem(
     val ripple = rememberRipple(bounded = true)
     Card(
         modifier = Modifier
-            .padding(UlTheme.shape.padding)
+            .padding(horizontal = 4.dp)
             .height(300.dp)
             .conditional(!isPlaceholder) {
                 clickable(

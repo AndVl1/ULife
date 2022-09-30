@@ -11,12 +11,13 @@ import io.ktor.http.HttpHeaders
 import ru.bmstu.ulife.BuildConfig
 import ru.bmstu.ulife.main.create.model.ImageLoadingResponse
 import ru.bmstu.ulife.main.create.model.ImageLoadingState
+import ru.bmstu.ulife.network.HttpRoutes
 
 class ImageUploadService(private val ktor: HttpClient) {
     suspend fun uploadImage(imageBase64: String, progressListener: UploadProgressListener): ImageLoadingState {
         return try {
             val loadingResponse: ImageLoadingResponse = ktor.submitFormWithBinaryData(
-                url = "https://api.imgbb.com/1/upload",
+                url = HttpRoutes.IMAGES_API_URL,
                 formData = formData {
                     append("image", imageBase64, Headers.build {
                         append(HttpHeaders.ContentType, "image/*")
