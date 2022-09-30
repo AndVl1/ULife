@@ -40,8 +40,9 @@ jobs:
           echo POSITIONSTACK_API_KEY=\"$POSITIONSTACK_API_KEY\" > ./local.properties
       - name: Create google-services
         run: |
-          cat /home/runner/work/ULife/ULife/app/google-services.json | base64
+          touch /home/runner/work/ULife/ULife/app/google-services.json
           echo $GOOGLE_SERVICES_GSON > /home/runner/work/ULife/ULife/app/google-services.json
+          cat /home/runner/work/ULife/ULife/app/google-services.json
       - name: Build production release
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
