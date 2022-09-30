@@ -1,7 +1,7 @@
 package ru.bmstu.ulife.main.common.ui
 
 import com.google.android.gms.maps.model.LatLng
-import ru.bmstu.ulife.main.maps.model.EventModel
+import ru.bmstu.ulife.data.models.EventModel
 
 sealed class Screens {
     object MapsScreen: Screens()

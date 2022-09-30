@@ -5,17 +5,13 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import ru.bmstu.ulife.main.create.CreateEventScreen
 import ru.bmstu.ulife.main.events.common.EventsScreen
-import ru.bmstu.ulife.main.maps.model.EventModel
-import ru.bmstu.ulife.main.events.maps.ui.MapsScreen
-import ru.bmstu.ulife.uicommon.theme.UlTheme
+import ru.bmstu.ulife.data.models.EventModel
 
 @Composable
 fun MainComposeContent(

@@ -22,7 +22,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.google.android.gms.maps.model.LatLng
 import ru.bmstu.ulife.R
-import ru.bmstu.ulife.main.maps.model.EventModel
+import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.uicommon.theme.UlTheme
 
 @OptIn(ExperimentalPagerApi::class)

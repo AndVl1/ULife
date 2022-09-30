@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import ru.bmstu.ulife.BuildConfig
-import ru.bmstu.ulife.main.maps.model.EventModel
+import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.data.repository.MapPlacesRepository
 import ru.bmstu.ulife.main.events.common.PlaceResponse
 import ru.bmstu.ulife.main.events.maps.model.EventsLoadingState
@@ -31,12 +31,9 @@ class MapPlacesRepImpl(private val ktor: HttpClient): MapPlacesRepository {
         return try {
             withContext(job + Dispatchers.IO + coroutineExceptionHandler) {
                 val userId = 1
-                val data: MutableList<EventModel> =
-                    ktor.get{ url("${HttpRoutes.BASE_ULIFE_URL}/${userId}/event/events/") }
-                        .body<List<EventModel>>()
-                        .toMutableList()
+                val data: List<EventModel> = ktor.get{ url("${HttpRoutes.BASE_ULIFE_URL}/${userId}/event/events/") }.body()
                 val finalData = try {
-                    data.map { eventModel ->
+                    data.toMutableList().map { eventModel ->
                         val place = ktor.get(HttpRoutes.LATLNG_TO_POS_API_URL) {
                             url {
                                 parameters.append("access_key", BuildConfig.POSITIONSTACK_API_KEY)
