@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import ru.bmstu.ulife.R
-import ru.bmstu.ulife.main.maps.model.EventModel
+import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.databinding.ItemEventBinding
 import ru.bmstu.ulife.ext.TimeUtils.getDateTimeFromTimestamp
 import ru.bmstu.ulife.list_adapter.FeedItemViewBinder

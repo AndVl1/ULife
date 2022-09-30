@@ -10,12 +10,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import ru.bmstu.ulife.data.models.UserModel
 import ru.bmstu.ulife.databinding.FragmentEventDetailBinding
-import ru.bmstu.ulife.ext.TimeUtils.getDateTimeFromTimestamp
 import ru.bmstu.ulife.list_adapter.FeedAdapter
 import ru.bmstu.ulife.list_adapter.FeedItemBinder
 import ru.bmstu.ulife.list_adapter.FeedItemClass
 import ru.bmstu.ulife.list_adapter.binders.data.MemberListBinder
-import ru.bmstu.ulife.main.maps.model.EventModel
+import ru.bmstu.ulife.data.models.EventModel
 
 class EventDetailFragment : Fragment() {
     private lateinit var binding: FragmentEventDetailBinding

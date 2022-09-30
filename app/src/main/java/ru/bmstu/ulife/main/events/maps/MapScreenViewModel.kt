@@ -3,18 +3,16 @@ package ru.bmstu.ulife.main.events.maps
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
-import ru.bmstu.ulife.main.maps.model.EventModel
+import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.data.repository.MapPlacesRepository
 import ru.bmstu.ulife.main.events.maps.model.EventsLoadingState
 import ru.bmstu.ulife.main.events.maps.model.SnackbarType
 import ru.bmstu.ulife.mvi.IntentHandler
-import ru.bmstu.ulife.utils.UserLocation
 
 class MapScreenViewModel(
     private val placesRepository: MapPlacesRepository,

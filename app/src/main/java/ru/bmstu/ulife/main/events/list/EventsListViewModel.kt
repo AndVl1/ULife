@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import ru.bmstu.ulife.data.repository.MapPlacesRepository
 import ru.bmstu.ulife.main.events.maps.model.EventsLoadingState
 import ru.bmstu.ulife.main.events.maps.model.SnackbarType
-import ru.bmstu.ulife.main.maps.model.EventModel
+import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.mvi.IntentHandler
 
 class EventsListViewModel(
