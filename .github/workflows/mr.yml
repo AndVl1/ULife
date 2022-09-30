@@ -24,6 +24,30 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
+      - name: Generate build number
+        id: buildnumber
+        uses: einaregilsson/build-number@v3
+        with:
+          token: ${{secrets.github_token}}
+
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: 'Set variables'
+        id: vars
+        run: |
+          export $(cat .github/workflows/version.env | xargs)
+          echo "::set-output name=major_version::${MAJOR_VERSION}"
+          echo ${{ steps.buildnumber.outputs.build_number }} > version.txt
       - name: Create local.properties
         run: |
           touch local.properties 
@@ -34,4 +58,42 @@ jobs:
           touch /home/runner/work/ULife/ULife/app/google-services.json
           echo $GOOGLE_SERVICES_JSON > /home/runner/work/ULife/ULife/app/google-services.json
       - name: Build debug
-        run: ./gradlew assembleDebug
+        run: |
+          ./gradlew :app:assembleDebug \
+            -Dversion_code=${{ steps.buildnumber.outputs.build_number }} \
+            -Dversion_name="${{ steps.vars.outputs.major_version }}" \
+      - name: Copy artifacts
+        id: artifacts_copy
+        run: |
+          mkdir artifacts
+          cp version.txt artifacts/version.txt
+          cp app/build/outputs/apk/debug/app-debug.apk artifacts/app-debug-`cat version.txt`.apk
+          echo "::set-output name=path::artifacts/"
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: ${{ steps.artifacts_copy.outputs.path }}
+  upload-to-tg:
+    name: Upload to tg channel
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        id: download
+        with:
+          name: artifacts
+      - name: Get version number
+        id: version-num
+        run: |
+          echo "::set-output name=num::`cat ${{steps.download.outputs.download-path}}/version.txt`"
+      - name: Upload to Telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_PR }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            New commit in merge request #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }} 
+            View: https://github.com/AndVl1/ULife/pull/${{ github.event.pull_request.number }}
+          document: ${{steps.download.outputs.download-path}}/app-debug-${{steps.version-num.outputs.num}}.apk

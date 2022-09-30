@@ -28,11 +28,25 @@ jobs:
         uses: einaregilsson/build-number@v3
         with:
           token: ${{secrets.github_token}}
+
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1
+
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
       - name: 'Set variables'
         id: vars
         run: |
           export $(cat .github/workflows/version.env | xargs)
           echo "::set-output name=major_version::${MAJOR_VERSION}"
+          echo ${{ steps.buildnumber.outputs.build_number }} > version.txt
       - name: Create local.properties
         run: |
           touch local.properties 
@@ -42,7 +56,6 @@ jobs:
         run: |
           touch /home/runner/work/ULife/ULife/app/google-services.json
           echo $GOOGLE_SERVICES_JSON > /home/runner/work/ULife/ULife/app/google-services.json
-          cat /home/runner/work/ULife/ULife/app/google-services.json
       - name: Build production release
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
@@ -63,7 +76,7 @@ jobs:
         id: artifacts_copy
         run: |
           mkdir artifacts
-          cp ${{ steps.sign_apk_release.outputs.signedReleaseFile }} artifacts/app-release.apk
+          cp ${{ steps.sign_apk_release.outputs.signedReleaseFile }} artifacts/app-release-`cat version.txt`.apk
           echo "::set-output name=path::artifacts/"
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
@@ -80,6 +93,10 @@ jobs:
         id: download
         with:
           name: artifacts
+      - name: Get version number
+        id: version-num
+        run: |
+          echo "::set-output name=num::`cat ${{steps.download.outputs.download-path}}/version.txt`"
       - name: Upload to Telegram
         uses: appleboy/telegram-action@master
         with:
@@ -88,4 +105,4 @@ jobs:
           message: |
             New version in dev branch
             Commit name: ${{ github.event.commits[0].message }}
-          document: ${{steps.download.outputs.download-path}}/app-release.apk
+          document: ${{steps.download.outputs.download-path}}/app-release-${{steps.version-num.outputs.num}}.apk
