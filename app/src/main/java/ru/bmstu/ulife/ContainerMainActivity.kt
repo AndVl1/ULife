@@ -54,9 +54,6 @@ class ContainerMainActivity : AppCompatActivity() {
 
     fun onShowNavigator() {
         binding?.containerMainBottomNavigation?.let { navigation ->
-            if (navigation.visibility == View.VISIBLE) {
-                return
-            }
             navigation.show()
             binding?.bottomAppBar?.show()
         }

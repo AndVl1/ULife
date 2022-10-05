@@ -12,7 +12,7 @@ class EventDetailRepository constructor(
     private val storage: SharedPreferencesStorage,
     private val remoteDataSource: EventDetailRemoteDataSource
 ) {
-    suspend fun getEventBeEventId(userId: String, eventId: String): Flow<EventModel> {
+    suspend fun getEventByEventId(userId: String, eventId: String): Flow<EventModel> {
         return flow {
             val responseFeed = remoteDataSource.getEventByEventId(userId, eventId)
             if (responseFeed is Result.Success) {

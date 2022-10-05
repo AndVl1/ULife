@@ -13,7 +13,6 @@ class EventDetailRemoteDataSource constructor(
 
     suspend fun getEventByEventId(userId: String, eventId: String): Result<EventModel> {
         val response = eventDetailService.getEventByEventId(userId, eventId)
-        println("LOG:: " + response.bodyAsText())
         val body = response.body<EventModel>()
         return if (response.status.value == 200) {
             Result.Success(body)

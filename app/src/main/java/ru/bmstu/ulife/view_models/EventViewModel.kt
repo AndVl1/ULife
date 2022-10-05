@@ -15,7 +15,7 @@ class EventViewModel constructor(private val repository: EventDetailRepository) 
 
     fun getEventByEventId(userId: String, eventId: String) {
         viewModelScope.launch {
-            repository.getEventBeEventId(userId, eventId)
+            repository.getEventByEventId(userId, eventId)
                 .catch { onError(it) }
                 .collect { state.emit(EventDetailState.EventSuccess(it)) }
         }

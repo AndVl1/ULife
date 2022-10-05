@@ -69,7 +69,6 @@ class AuthorizationFragment : Fragment() {
         when (newState) {
             is LoginState.LoginSuccess -> {
                 val userWithTokenModel = newState.userWithTokenModel
-                println("LOG login success: " + userWithTokenModel)
                 storage.putUserWithTokenModel(userWithTokenModel)
                 onAuthorizationClick()
             }
@@ -177,8 +176,6 @@ class AuthorizationFragment : Fragment() {
     }
 
     private fun onAuthorizationClick() {
-        val action =
-            AuthorizationFragmentDirections.actionAuthorizationFragmentToMapFragment()
-        findNavController().navigate(action)
+        findNavController().popBackStack()
     }
 }

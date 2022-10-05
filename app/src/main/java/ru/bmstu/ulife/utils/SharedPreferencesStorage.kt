@@ -128,7 +128,7 @@ class SharedPreferencesStorage constructor(
 
     fun getLongitude(): Float = storage.getFloat("lng", 37.61556f)
 
-    fun getAuthToken(): String? = storage.getString(PrefsKeys.KEY_TOKEN, "0")
+    fun getAuthToken(): String? = storage.getString(PrefsKeys.KEY_TOKEN, null)
 
     @Nullable
     fun getProfileId(): String? = storage.getString(PrefsKeys.KEY_PROFILE_ID, null)
@@ -295,7 +295,7 @@ class SharedPreferencesStorage constructor(
 
     fun removeAuthToken() {
         storage.edit()
-            .putInt(PrefsKeys.KEY_TOKEN, 0)
+            .putString(PrefsKeys.KEY_TOKEN, null)
             .apply()
     }
 

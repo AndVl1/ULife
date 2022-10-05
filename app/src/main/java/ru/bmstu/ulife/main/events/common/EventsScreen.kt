@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -55,6 +56,7 @@ fun EventsScreen(
                         text = "Events",
                         color = UlTheme.colors.primaryText,
                         style = UlTheme.typography.toolbar,
+                        textAlign = TextAlign.Center
                     )
                     onModeSwitchClicked?.let {
                         Icon(

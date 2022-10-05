@@ -35,17 +35,13 @@ class EventDetailFragment : Fragment() {
 
     private val eventViewModel by viewModel<EventViewModel>()
 
-    private var storage: SharedPreferencesStorage = get<SharedPreferencesStorage>(named("storage"))
+    private var storage: SharedPreferencesStorage = get(named("storage"))
 
     val args: EventDetailFragmentArgs by navArgs()
 
     private lateinit var adapter: FeedAdapter
 
     private val viewBinders = mutableMapOf<FeedItemClass, FeedItemBinder>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,8 +54,7 @@ class EventDetailFragment : Fragment() {
         createBinders()
         binding.rvMemberList.adapter = adapter
 
-        showEventDetail(args.eventModel)
-        //eventViewModel.getEventByEventId(storage.getUserId().toString(), args.eventModel.toString())
+        eventViewModel.getEventByEventId(storage.getUserId().toString(), args.eventId)
     }
 
     private fun onEventDetailStateChanged(newState: EventDetailState) {
@@ -73,7 +68,6 @@ class EventDetailFragment : Fragment() {
     }
 
     private fun showEventDetail(eventModel: EventModel) {
-        println("LOG:: eventModel=" + eventModel)
         binding.apply {
             title.text = eventModel.title
             categoryTitle.text = eventModel.categoryTitle

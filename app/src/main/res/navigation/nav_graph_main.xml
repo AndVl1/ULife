@@ -36,9 +36,12 @@
         android:name="ru.bmstu.ulife.main.ui.EventDetailFragment"
         android:label="EventDetailFragment"
         tools:layout="@layout/fragment_event_detail">
-        <argument
+        <!--<argument
             android:name="eventModel"
-            app:argType="ru.bmstu.ulife.main.maps.model.EventModel"/>
+            app:argType="ru.bmstu.ulife.main.maps.model.EventModel"/>-->
+        <argument
+            android:name="eventId"
+            app:argType="string"/>
     </fragment>
 
     <fragment
@@ -47,8 +50,8 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_profileFragment_to_authorizationFragment"
-            app:destination="@id/authorizationFragment">
+            android:id="@+id/action_profileFragment_to_mapFragment"
+            app:destination="@id/mapFragment">
         </action>
     </fragment>
 

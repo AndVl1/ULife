@@ -95,7 +95,7 @@ class ProfileFragment : Fragment() {
 
     private fun navigateToAuthorizationFragment() {
         val action =
-            ProfileFragmentDirections.actionProfileFragmentToAuthorizationFragment()
+            ProfileFragmentDirections.actionProfileFragmentToMapFragment()
         findNavController().navigate(action)
     }
 }
