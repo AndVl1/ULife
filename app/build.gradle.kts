@@ -6,6 +6,8 @@ plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1"
     kotlin("plugin.serialization")
     id("androidx.navigation.safeargs") version "2.5.2"
+    id("com.google.gms.google-services") version "4.3.13"
+    id("com.google.firebase.crashlytics") version "2.9.2"
 }
 
 android {
@@ -114,6 +116,9 @@ dependencies {
     implementation(projects.uicommon)
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
+    implementation(platform("com.google.firebase:firebase-bom:30.4.1"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
