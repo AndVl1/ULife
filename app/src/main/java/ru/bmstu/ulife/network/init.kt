@@ -3,6 +3,7 @@ package ru.bmstu.ulife.network
 import android.util.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.Charsets
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.ANDROID
 import io.ktor.client.plugins.logging.DEFAULT
@@ -25,6 +26,10 @@ fun initKtorClient() = HttpClient(OkHttp) {
             isLenient = true
             ignoreUnknownKeys = true
         })
+    }
+
+    Charsets {
+        register(Charsets.UTF_8)
     }
 }
 

@@ -17,7 +17,7 @@ fun MainTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     corners: UlCorners = UlCorners.Rounded,
     textSize: UlSize = UlSize.Medium,
-    paddingSize: UlSize = UlSize.Medium,
+    paddingSize: UlSize = UlSize.Small,
     style: UlStyle = UlStyle.Green,
     content: @Composable () -> Unit,
 ) {

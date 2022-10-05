@@ -16,9 +16,9 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import ru.bmstu.ulife.main.create.model.CreateEventModel
 import ru.bmstu.ulife.main.create.model.EventLoadingState
-import ru.bmstu.ulife.main.create.model.ImageLoadingResponse
 import ru.bmstu.ulife.main.create.model.ImageLoadingState
 import ru.bmstu.ulife.main.create.model.SimpleUploadModel
+import ru.bmstu.ulife.network.HttpRoutes
 import ru.bmstu.ulife.utils.toBase64
 import java.time.format.DateTimeFormatter
 
@@ -81,7 +81,7 @@ class CreateEventRepository(
         val json = Json.encodeToString(data.copy(categoryTitle = "Test12345", address = "abc", ))
         Log.d("CREATE", "$data\n$json")
         val response = ktor.post {
-            url("http://37.139.33.65:8080/${userId}/event/createEvent/${userId}/token/${token}")
+            url("${HttpRoutes.BASE_ULIFE_URL}/${userId}/event/createEvent/${userId}/token/${token}")
             contentType(ContentType.Application.Json)
             setBody(data.copy(categoryTitle = "Test12345", address = "abc", ))
         }

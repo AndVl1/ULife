@@ -8,6 +8,7 @@ on:
 env:
   MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
   IMGBB_API_KEY: ${{ secrets.IMGBB_API_KEY }}
+  POSITIONSTACK_API_KEY: ${{ secrets.POSITIONSTACK_API_KEY }}
 
 jobs:
   build:
@@ -26,5 +27,6 @@ jobs:
         run: |
           touch local.properties 
           echo IMGBB_API_KEY=\"$IMGBB_API_KEY\" > ./local.properties
+          echo POSITIONSTACK_API_KEY=\"POSITIONSTACK_API_KEY\" > ./local.properties
       - name: Build debug
         run: ./gradlew assembleDebug
