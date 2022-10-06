@@ -8,15 +8,16 @@ plugins {
     id("androidx.navigation.safeargs") version "2.5.2"
     id("com.google.gms.google-services") version "4.3.13"
     id("com.google.firebase.crashlytics") version "2.9.2"
+    id("com.github.ben-manes.versions") version "0.42.0"
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "ru.bmstu.ulife"
         minSdk = 23
-        targetSdk = 32
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -68,6 +69,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        /*freeCompilerArgs = freeCompilerArgs +
+                "-Xuse-ir" +
+                "-XDump-directory=${buildDir}/ir/" +
+                "-Xphases-to-dump-after=ValidateIrBeforeLowering"*/
     }
     buildFeatures {
         compose = true
@@ -153,4 +158,13 @@ dependencies {
     implementation("io.insert-koin:koin-android-compat:3.2.1")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
+}
+
+tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("dependencyUpdates").configure {
+
+    // optional parameters
+    checkForGradleUpdate = true
+    outputFormatter = "json"
+    outputDir = "build/dependencyUpdates"
+    reportfileName = "report"
 }

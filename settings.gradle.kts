@@ -10,7 +10,7 @@ pluginManagement {
                 useModule("com.android.tools.build:gradle:7.2.2")
             }
             if (requested.id.id.startsWith("org.jetbrains.kotlin")) {
-                useVersion("1.7.10")
+                useVersion("1.7.20")
             }
         }
     }
