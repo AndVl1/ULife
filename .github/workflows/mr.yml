@@ -97,3 +97,4 @@ jobs:
             New commit in merge request #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }} 
             View: https://github.com/AndVl1/ULife/pull/${{ github.event.pull_request.number }}
           document: ${{steps.download.outputs.download-path}}/app-debug-${{steps.version-num.outputs.num}}.apk
+          disable_notification: true
