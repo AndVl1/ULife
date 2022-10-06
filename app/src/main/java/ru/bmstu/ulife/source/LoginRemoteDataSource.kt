@@ -3,6 +3,7 @@ package ru.bmstu.ulife.source
 import io.ktor.client.call.*
 import ru.bmstu.ulife.data.models.SendToServerUserModel
 import ru.bmstu.ulife.data.models.UserModel
+import ru.bmstu.ulife.data.models.UserWithTokenModel
 import ru.bmstu.ulife.data.states.Result
 import ru.bmstu.ulife.network.service.LoginServiceImpl
 
@@ -18,9 +19,9 @@ class LoginRemoteDataSource constructor(
         }
     }
 
-    suspend fun login(login: String, password: String): Result<Int> {
+    suspend fun login(login: String, password: String): Result<UserWithTokenModel> {
         val response = loginService.login(login, password)
-        val body = response.body<Int>()
+        val body = response.body<UserWithTokenModel>()
         return if (response.status.value == 200) {
             Result.Success(body)
         } else {

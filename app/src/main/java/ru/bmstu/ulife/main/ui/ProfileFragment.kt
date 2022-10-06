@@ -6,13 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
+import ru.bmstu.ulife.data.states.LoginState
 import ru.bmstu.ulife.databinding.FragmentProfileBinding
+import ru.bmstu.ulife.ext.showSnackbar
 import ru.bmstu.ulife.utils.SharedPreferencesStorage
+import ru.bmstu.ulife.view_models.LoginViewModel
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
+
+    private val loginViewModel by viewModel<LoginViewModel>()
 
     private var storage: SharedPreferencesStorage = get<SharedPreferencesStorage>(named("storage"))
 
@@ -23,6 +32,28 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        lifecycleScope.launch {
+            loginViewModel.getState().collect { onLoginStateChanged(it) }
+        }
+    }
+
+    private fun onLoginStateChanged(newState: LoginState) {
+        when (newState) {
+            is LoginState.LogoutSuccess -> {
+                logout()
+
+            }
+            is LoginState.Error -> onError(newState.textId)
+            else -> { }
+        }
+    }
+
+    private fun onError(textId: Int) {
+        showSnackbar(
+            binding.root,
+            getString(textId),
+            duration = 1500
+        )
     }
 
     override fun onCreateView(
@@ -50,6 +81,21 @@ class ProfileFragment : Fragment() {
             settingsTvGender.text = storage.getUserGender()
             settingsTvAddress.text = storage.getUserCountry()
             settingsTvCity.text = storage.getUserCity()
+
+            logoutButton.setOnClickListener {
+                loginViewModel.logout(storage.getUserId())
+            }
         }
+    }
+
+    private fun logout() {
+        storage.removeAuthToken()
+        navigateToAuthorizationFragment()
+    }
+
+    private fun navigateToAuthorizationFragment() {
+        val action =
+            ProfileFragmentDirections.actionProfileFragmentToMapFragment()
+        findNavController().navigate(action)
     }
 }

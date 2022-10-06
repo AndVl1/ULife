@@ -9,17 +9,15 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
@@ -31,9 +29,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionStatus
@@ -97,7 +98,13 @@ fun MapsScreen(
             onCreateNewEvent = { onCreateNewEvent.invoke(it.position) },
         )
         Button(
-            modifier = Modifier.align(Alignment.TopEnd),
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(8.dp),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = colorResource(id = R.color.white_transparent_40),
+                contentColor = Color(R.color.colorBlack)
+            ),
             onClick = {
                 when (val status = locationPermissionState.status) {
                     is PermissionStatus.Denied -> {
@@ -119,14 +126,19 @@ fun MapsScreen(
                     }
                 }
             },
-        ) {
-            Text(text = "My pos")
-        }
+            content = {
+                Text(
+                    text = "My pos",
+                    color = Color(R.color.colorBlack)
+                )
+            }
+        )
         IconButton(
             modifier = Modifier
+                .padding(8.dp)
                 .rotate(
                     if (currentState.value == EventsLoadingState.Loading) {
-                        angle
+                        -angle
                     } else {
                         0f
                     }
@@ -136,7 +148,11 @@ fun MapsScreen(
                 viewModel.handleEvent(MapsScreenEvent.UpdateClicked)
             }
         ) {
-            Icon(painter = painterResource(id = R.drawable.ic_refresh_48), contentDescription = "Update")
+            Icon(
+                painter = painterResource(id = R.drawable.reload),
+                contentDescription = "Update",
+                tint = Color.Unspecified
+            )
         }
         AnimatedVisibility(
             visible = currentState.value is EventsLoadingState.ShowInfo,
@@ -155,9 +171,11 @@ fun MapsScreen(
                 contentColor = UlTheme.colors.primaryText,
                 shape = RoundedCornerShape(4.dp),
             ) {
-                Box(modifier = Modifier
-                    .fillMaxSize()
-                    .padding(vertical = 4.dp)) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(vertical = 4.dp)
+                ) {
                     Text(
                         modifier = Modifier.align(Alignment.Center),
                         text = infoText ?: "",
@@ -181,7 +199,7 @@ fun MapsScreen(
             }
         }
     }
-    
+
     LaunchedEffect(key1 = currentState) {
         viewModel.handleEvent(MapsScreenEvent.EnterScreen)
     }
