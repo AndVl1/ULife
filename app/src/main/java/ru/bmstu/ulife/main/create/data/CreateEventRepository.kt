@@ -15,17 +15,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.koin.android.ext.android.get
+import org.koin.core.qualifier.named
 import ru.bmstu.ulife.main.create.model.CreateEventModel
 import ru.bmstu.ulife.main.create.model.EventLoadingState
 import ru.bmstu.ulife.main.create.model.ImageLoadingState
 import ru.bmstu.ulife.main.create.model.SimpleUploadModel
 import ru.bmstu.ulife.network.HttpRoutes
+import ru.bmstu.ulife.utils.SharedPreferencesStorage
 import ru.bmstu.ulife.utils.toBase64
 import java.time.format.DateTimeFormatter
 
 class CreateEventRepository(
     private val imageUploadService: ImageUploadService,
     private val ktor: HttpClient,
+    private var storage: SharedPreferencesStorage,
     private val context: Context,
 ) {
     suspend fun uploadEvent(
@@ -37,7 +41,7 @@ class CreateEventRepository(
                 val imageUrl = uploadImage(it, imageUploadProgressListener)
                     ?: return@withContext EventLoadingState.Error("Image not uploaded")
                 val model = CreateEventModel(
-                    authorId = 1,
+                    authorId = storage.getUserId(),
                     description = data.description,
                     title = data.title,
                     latitude = data.latLng.latitude,

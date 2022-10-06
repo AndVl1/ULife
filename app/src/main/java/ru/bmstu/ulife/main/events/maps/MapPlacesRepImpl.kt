@@ -20,8 +20,12 @@ import ru.bmstu.ulife.main.events.common.PlaceResponse
 import ru.bmstu.ulife.main.events.maps.model.EventsLoadingState
 import ru.bmstu.ulife.main.events.maps.model.SnackbarType
 import ru.bmstu.ulife.network.HttpRoutes
+import ru.bmstu.ulife.utils.SharedPreferencesStorage
 
-class MapPlacesRepImpl(private val ktor: HttpClient): MapPlacesRepository {
+class MapPlacesRepImpl(
+    private val ktor: HttpClient,
+    private var storage: SharedPreferencesStorage,
+): MapPlacesRepository {
     private val job = Job()
 
     override suspend fun getEvents(): EventsLoadingState {
@@ -30,7 +34,7 @@ class MapPlacesRepImpl(private val ktor: HttpClient): MapPlacesRepository {
         }
         return try {
             withContext(job + Dispatchers.IO + coroutineExceptionHandler) {
-                val userId = 1
+                val userId = storage.getUserId()
                 val data: List<EventModel> = ktor.get{ url("${HttpRoutes.BASE_ULIFE_URL}/${userId}/event/events/") }.body()
                 val finalData = try {
                     data.toMutableList().map { eventModel ->

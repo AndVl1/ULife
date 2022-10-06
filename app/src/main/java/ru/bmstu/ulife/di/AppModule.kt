@@ -37,7 +37,7 @@ val loginModule = module {
 }
 
 val eventsListModule = module {
-    single<MapPlacesRepository> { MapPlacesRepImpl(get()) }
+    single<MapPlacesRepository> { MapPlacesRepImpl(get(), get()) }
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
     single { LocationTrackingDataSource(get(), get()) }
     viewModel { MapScreenViewModel(get(), get() ) }
@@ -53,5 +53,5 @@ val eventDetailModule = module {
 val createEventModule = module {
     viewModel { CreateEventViewModel(get()) }
     single { ImageUploadService(get()) }
-    single { CreateEventRepository(get(), get(), androidContext()) }
+    single { CreateEventRepository(get(), get(), get(), androidContext()) }
 }
