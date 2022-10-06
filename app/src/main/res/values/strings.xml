@@ -47,4 +47,5 @@
     <string name="lets_go_begin">Давайте начнём!</string>
     <string name="item_events">Список событий</string>
     <string name="item_maps">Карта событий</string>
+    <string name="account_logout">Выйти из аккаунта</string>
 </resources>

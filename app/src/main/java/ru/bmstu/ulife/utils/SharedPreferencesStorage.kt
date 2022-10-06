@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.annotation.Nullable
 import org.koin.core.component.KoinComponent
 import ru.bmstu.ulife.data.models.UserModel
+import ru.bmstu.ulife.data.models.UserWithTokenModel
 import java.util.Collections.emptySet
 
 class SharedPreferencesStorage constructor(
@@ -34,9 +35,9 @@ class SharedPreferencesStorage constructor(
             .apply()
     }
 
-    fun putAuthToken(token: Int) {
+    fun putAuthToken(token: String) {
         storage.edit()
-            .putInt(PrefsKeys.KEY_TOKEN, token)
+            .putString(PrefsKeys.KEY_TOKEN, token)
             .apply()
     }
 
@@ -127,7 +128,7 @@ class SharedPreferencesStorage constructor(
 
     fun getLongitude(): Float = storage.getFloat("lng", 37.61556f)
 
-    fun getAuthToken(): Int = storage.getInt(PrefsKeys.KEY_TOKEN, 0)
+    fun getAuthToken(): String? = storage.getString(PrefsKeys.KEY_TOKEN, null)
 
     @Nullable
     fun getProfileId(): String? = storage.getString(PrefsKeys.KEY_PROFILE_ID, null)
@@ -190,6 +191,7 @@ class SharedPreferencesStorage constructor(
 
 
     fun putUserId(data: Int) {
+        println("LOG put userId=" + data)
         storage.edit()
             .putInt(PrefsKeys.KEY_USER_ID, data)
             .apply()
@@ -265,6 +267,7 @@ class SharedPreferencesStorage constructor(
     fun getUserAge(): Int = storage.getInt(PrefsKeys.KEY_USER_AGE, 0)
 
     fun putUserModel(userModel: UserModel) {
+        println("LOG: put user model = " + userModel)
         putUserId(userModel.userId)
         putUserFirstName(userModel.firstName)
         putUserSecondName(userModel.lastName)
@@ -276,9 +279,23 @@ class SharedPreferencesStorage constructor(
         putUserGender(userModel.gender)
     }
 
+    fun putUserWithTokenModel(userModel: UserWithTokenModel) {
+        println("LOG put user with token: "+ userModel)
+        putUserId(userModel.userId)
+        putUserFirstName(userModel.firstName)
+        putUserSecondName(userModel.lastName)
+        putUserEmail(userModel.email)
+        putUserPassword(userModel.password)
+        putUserAge(userModel.age)
+        putUserCountry(userModel.country)
+        putUserCity(userModel.city)
+        putUserGender(userModel.gender)
+        putAuthToken(userModel.token)
+    }
+
     fun removeAuthToken() {
         storage.edit()
-            .putInt(PrefsKeys.KEY_TOKEN, 0)
+            .putString(PrefsKeys.KEY_TOKEN, null)
             .apply()
     }
 

@@ -6,28 +6,28 @@ import kotlinx.serialization.SerialName
 @Serializable
 data class EventModel(
     @SerialName("address")
-    val address: String,
+    val address: String?,
     @SerialName("authorId")
-    val authorId: Int,
+    val authorId: Int?,
     @SerialName("categoryTitle")
-    val categoryTitle: String,
+    val categoryTitle: String?,
     @SerialName("description")
-    val description: String,
+    val description: String?,
     @SerialName("eventAvatar")
-    val eventAvatar: String,
+    val eventAvatar: String?,
     @SerialName("eventId")
-    val eventId: Int,
+    val eventId: Int?,
     @SerialName("latitude")
-    val latitude: Double,
+    val latitude: Double?,
     @SerialName("longitude")
-    val longitude: Double,
+    val longitude: Double?,
     @SerialName("timeEnd")
-    val timeEnd: Long,
+    val timeEnd: Long?,
     @SerialName("timeStart")
-    val timeStart: Long,
+    val timeStart: Long?,
     @SerialName("title")
-    val title: String
-) {
+    val title: String?
+):java.io.Serializable {
     companion object {
         val EMPTY = EventModel(
             address = "",

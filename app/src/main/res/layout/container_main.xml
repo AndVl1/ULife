@@ -11,13 +11,14 @@
         android:layout_height="match_parent"
         app:navGraph="@navigation/nav_graph_main"
         app:defaultNavHost="true"
+        android:layout_marginBottom="56dp"
         app:layout_constraintBottom_toTopOf="@+id/containerMain_bottomNavigation"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_gravity="bottom"
         app:fabCradleMargin="0dp"
         android:visibility="gone">
@@ -26,8 +27,7 @@
             android:id="@+id/containerMain_bottomNavigation"
             style="@style/BottomNavigationStyle"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_gravity="bottom"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:visibility="gone"

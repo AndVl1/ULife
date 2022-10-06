@@ -3,6 +3,7 @@ package ru.bmstu.ulife.data.repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import ru.bmstu.ulife.data.models.SendToServerUserModel
+import ru.bmstu.ulife.data.models.UserWithTokenModel
 import ru.bmstu.ulife.data.states.ErrorHandler
 import ru.bmstu.ulife.utils.SharedPreferencesStorage
 import ru.bmstu.ulife.source.LoginRemoteDataSource
@@ -22,7 +23,7 @@ class LoginRepository constructor(
         }
     }
 
-    suspend fun login(login: String, password: String): Flow<Int> {
+    suspend fun login(login: String, password: String): Flow<UserWithTokenModel> {
         return flow {
             val responseFeed = remoteDataSource.login(login, password)
             if (responseFeed is Result.Success) {
@@ -34,7 +35,7 @@ class LoginRepository constructor(
     suspend fun logout(userId: Int) {
         when (val response = remoteDataSource.logout(userId)) {
             is Result.Success -> {
-                storage.putAuthToken(0)
+                storage.putAuthToken("0")
             }
             is Result.Error -> onError(response.code)
             else -> {}

@@ -39,7 +39,7 @@ class ContainerMainActivity : AppCompatActivity() {
                 when (destination.id) {
                     R.id.authorizationFragment
                     -> onHideNavigator()
-                    else -> onShowNavigator(destination)
+                    else -> onShowNavigator()
                 }
             }
         }
@@ -52,11 +52,8 @@ class ContainerMainActivity : AppCompatActivity() {
         }
     }
 
-    fun onShowNavigator(destination: NavDestination?) {
+    fun onShowNavigator() {
         binding?.containerMainBottomNavigation?.let { navigation ->
-            if (navigation.visibility == View.VISIBLE) {
-                return
-            }
             navigation.show()
             binding?.bottomAppBar?.show()
         }

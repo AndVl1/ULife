@@ -48,7 +48,7 @@ fun GoogleMapView(
         onMapClick = { createUserLocation.value = null }
     ) {
         events.map { event ->
-            MarkerStateModel(event, MarkerState(LatLng(event.latitude.toDouble(), event.longitude.toDouble())))
+            MarkerStateModel(event, MarkerState(LatLng(event.latitude!!.toDouble(), event.longitude!!.toDouble())))
         }.forEach { model ->
             MarkerInfoWindowContent(
                 state = model.marker,
@@ -62,7 +62,7 @@ fun GoogleMapView(
                 ) {
                     Row(modifier = Modifier.padding(4.dp)) {
                         Text(
-                            text = model.eventModel.title,
+                            text = model.eventModel.title.toString(),
                             style = UlTheme.typography.body
                         )
                         Icon(imageVector = Icons.Default.ArrowForward, contentDescription = "go to")
