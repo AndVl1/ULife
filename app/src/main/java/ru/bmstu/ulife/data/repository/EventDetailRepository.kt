@@ -2,9 +2,9 @@ package ru.bmstu.ulife.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.data.states.ErrorHandler
 import ru.bmstu.ulife.data.states.Result
-import ru.bmstu.ulife.main.maps.model.EventModel
 import ru.bmstu.ulife.source.EventDetailRemoteDataSource
 import ru.bmstu.ulife.utils.SharedPreferencesStorage
 

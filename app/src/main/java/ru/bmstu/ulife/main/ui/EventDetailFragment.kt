@@ -14,21 +14,18 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
+import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.data.models.UserModel
 import ru.bmstu.ulife.data.states.EventDetailState
-import ru.bmstu.ulife.data.states.LoginState
 import ru.bmstu.ulife.databinding.FragmentEventDetailBinding
 import ru.bmstu.ulife.ext.TimeUtils.getDateTimeFromLongTimestamp
-import ru.bmstu.ulife.ext.TimeUtils.getDateTimeFromTimestamp
 import ru.bmstu.ulife.ext.showSnackbar
 import ru.bmstu.ulife.list_adapter.FeedAdapter
 import ru.bmstu.ulife.list_adapter.FeedItemBinder
 import ru.bmstu.ulife.list_adapter.FeedItemClass
 import ru.bmstu.ulife.list_adapter.binders.data.MemberListBinder
-import ru.bmstu.ulife.main.maps.model.EventModel
 import ru.bmstu.ulife.utils.SharedPreferencesStorage
 import ru.bmstu.ulife.view_models.EventViewModel
-import ru.bmstu.ulife.view_models.LoginViewModel
 
 class EventDetailFragment : Fragment() {
     private lateinit var binding: FragmentEventDetailBinding

@@ -1,9 +1,8 @@
 package ru.bmstu.ulife.source
 
 import io.ktor.client.call.*
-import io.ktor.client.statement.*
+import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.data.states.Result
-import ru.bmstu.ulife.main.maps.model.EventModel
 import ru.bmstu.ulife.network.service.EventDetailService
 
 

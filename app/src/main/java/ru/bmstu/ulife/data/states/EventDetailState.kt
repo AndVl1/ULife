@@ -1,7 +1,6 @@
 package ru.bmstu.ulife.data.states
 
-import ru.bmstu.ulife.data.models.UserWithTokenModel
-import ru.bmstu.ulife.main.maps.model.EventModel
+import ru.bmstu.ulife.data.models.EventModel
 
 
 sealed class EventDetailState {
