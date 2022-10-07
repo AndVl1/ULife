@@ -1,9 +1,14 @@
 package ru.bmstu.ulife.main.events.list
 
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -26,6 +31,9 @@ fun EventsList(
         state = rememberSwipeRefreshState(currentState.value == EventsLoadingState.Loading),
         onRefresh = { viewModel.handleEvent(EventsListMviEvent.UpdateRequested) }
     ) {
+        if (events.value.isEmpty()) {
+            Box(modifier = Modifier.fillMaxSize().scrollable(rememberScrollState(), Orientation.Vertical))
+        }
         LazyColumn {
             item {
                 Spacer(modifier = Modifier.height(8.dp))
