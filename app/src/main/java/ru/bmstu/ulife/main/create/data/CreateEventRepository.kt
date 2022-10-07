@@ -87,7 +87,7 @@ class CreateEventRepository(
         val json = Json.encodeToString(data.copy(categoryTitle = "Test12345", address = "abc", ))
         Log.d("CREATE", "$data\n$json")
         val response = ktor.post {
-            url("${HttpRoutes.BASE_ULIFE_URL}/${userId}/event/createEvent/${userId}/token/${token}")
+            url("${HttpRoutes.BASE_ULIFE_URL}/${data.authorId}/event/createEvent/${data.authorId}/token/${token}")
             contentType(ContentType.Application.Json)
             setBody(data.copy(categoryTitle = "Test12345", address = "abc", ))
         }

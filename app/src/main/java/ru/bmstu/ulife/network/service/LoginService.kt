@@ -27,7 +27,7 @@ interface LoginService {
 
     suspend fun logout(
         userId: Int
-    ): HttpResponse = initKtorClient().post("${HttpRoutes.BASE_ULIFE_URL}/$LOGOUT/$userId") {
+    ): HttpResponse = initKtorClient().get("${HttpRoutes.BASE_ULIFE_URL}/$LOGOUT/$userId") {
         header(HttpHeaders.ContentType, ContentType.Application.Json)
         header(HttpHeaders.Accept, ContentType.Application.Json)
     }
