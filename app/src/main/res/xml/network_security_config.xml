@@ -2,5 +2,6 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">37.139.33.65</domain>
         <domain includeSubdomains="true">api.positionstack.com</domain>
+        <domain includeSubdomains="true">37.139.41.254</domain>
     </domain-config>
 </network-security-config>

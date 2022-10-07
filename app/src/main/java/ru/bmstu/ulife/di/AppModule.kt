@@ -37,6 +37,7 @@ val loginModule = module {
 }
 
 val eventsListModule = module {
+    single(/*named("storage")*/) { SharedPreferencesStorage(get()) }
     single<MapPlacesRepository> { MapPlacesRepImpl(get(), get()) }
     single { LocationServices.getFusedLocationProviderClient(androidContext()) }
     single { LocationTrackingDataSource(get(), get()) }
@@ -53,5 +54,6 @@ val eventDetailModule = module {
 val createEventModule = module {
     viewModel { CreateEventViewModel(get()) }
     single { ImageUploadService(get()) }
+    single(named("storage")) { SharedPreferencesStorage(get()) }
     single { CreateEventRepository(get(), get(), get(), androidContext()) }
 }

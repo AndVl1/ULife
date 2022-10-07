@@ -37,8 +37,7 @@ class ContainerMainActivity : AppCompatActivity() {
             binding?.containerMainBottomNavigation?.setupWithNavController(host.findNavController())
             host.findNavController().addOnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
-                    R.id.authorizationFragment
-                    -> onHideNavigator()
+                    R.id.authorizationFragment -> onHideNavigator()
                     else -> onShowNavigator()
                 }
             }

@@ -13,6 +13,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import org.koin.android.ext.android.get
+import org.koin.core.qualifier.named
 import ru.bmstu.ulife.BuildConfig
 import ru.bmstu.ulife.data.models.EventModel
 import ru.bmstu.ulife.data.repository.MapPlacesRepository
