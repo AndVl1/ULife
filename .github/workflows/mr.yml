@@ -45,7 +45,7 @@ jobs:
           name: changes
           path: ${{ steps.save_changes.outputs.path }}
 
-  notify-not-changed:
+  build:
     name: "Build apk"
     needs: get-changes
     runs-on: ubuntu-latest
@@ -64,51 +64,23 @@ jobs:
           if test -f "$FILE"; then
             echo "file exists"
           else 
-            exit 0
-          fi
-
-
-  build:
-    name: "Build apk"
-    needs: get-changes
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v2
-        id: changes
-        with:
-          name: changes
-      - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
-      - name: Get changes
-        shell: bash
-        id: should-build
-        run: |
-          FILE=`${{steps.download.outputs.changes}}/changes.txt`
-          if test -f "$FILE"; then
-            echo "::set-output name=build::true"
-          else
-            echo "::set-output name=build::false"
+            exit 1
           fi
       - name: Set up JDK 1.11
-        if: ${{ steps.should-build.outputs.build }} == true
         uses: actions/setup-java@v2
         with:
           distribution: 'temurin'
           java-version: '11'
       - name: Generate build number
-        if: ${{ steps.should-build.outputs.build }} == true
         id: buildnumber
         uses: einaregilsson/build-number@v3
         with:
           token: ${{secrets.github_token}}
 
       - name: Gradle Wrapper Validation
-        if: ${{ steps.should-build.outputs.build }} == true
         uses: gradle/wrapper-validation-action@v1
 
       - uses: actions/cache@v2
-        if: ${{ steps.should-build.outputs.build }} == true
         with:
           path: |
             ~/.gradle/caches
@@ -118,31 +90,26 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: 'Set variables'
-        if: ${{ steps.should-build.outputs.build }} == true
         id: vars
         run: |
           export $(cat .github/workflows/version.env | xargs)
           echo "::set-output name=major_version::${MAJOR_VERSION}"
           echo ${{ steps.buildnumber.outputs.build_number }} > version.txt
       - name: Create local.properties
-        if: ${{ steps.should-build.outputs.build }} == true
         run: |
           touch local.properties 
           echo IMGBB_API_KEY=\"$IMGBB_API_KEY\" > ./local.properties
           echo POSITIONSTACK_API_KEY=\"$POSITIONSTACK_API_KEY\" > ./local.properties
       - name: Create google-services
-        if: ${{ steps.should-build.outputs.build }} == true
         run: |
           touch /home/runner/work/ULife/ULife/app/google-services.json
           echo $GOOGLE_SERVICES_JSON > /home/runner/work/ULife/ULife/app/google-services.json
       - name: Build debug
-        if: ${{ steps.should-build.outputs.build }} == true
         run: |
           ./gradlew :app:assembleDebug \
             -Dversion_code=${{ steps.buildnumber.outputs.build_number }} \
             -Dversion_name="${{ steps.vars.outputs.major_version }}" \
       - name: Copy artifacts
-        if: ${{ steps.should-build.outputs.build }} == true
         id: artifacts_copy
         run: |
           mkdir artifacts
@@ -150,14 +117,13 @@ jobs:
           cp app/build/outputs/apk/debug/app-debug.apk artifacts/app-debug-`cat version.txt`.apk
           echo "::set-output name=path::artifacts/"
       - name: Upload Artifacts
-        if: ${{ steps.should-build.outputs.build }} == true
         uses: actions/upload-artifact@v2
         with:
           name: artifacts
           path: ${{ steps.artifacts_copy.outputs.path }}
 
       - name: On nothing changed
-        if: ${{ steps.should-build.outputs.build }} == false
+        if: failure()
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_PR }}
