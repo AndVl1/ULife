@@ -37,7 +37,9 @@ class VectorsViewModel(private val ktor: HttpClient): ViewModel() {
 
     fun sendData() {
         viewModelScope.launch {
-            socketSession?.send(Frame.Text(Json.encodeToString(Data(v1.value, v2.value))))
+            if (status.value) {
+                socketSession?.send(Frame.Text(Json.encodeToString(Data(v1.value, v2.value))))
+            }
         }
     }
 
