@@ -1,0 +1,3 @@
+[submodule "ktor-websocket-server-sample"]
+	path = ktor-websocket-server-sample
+	url = https://github.com/AndVl1/ktor-websocket-server-sample
