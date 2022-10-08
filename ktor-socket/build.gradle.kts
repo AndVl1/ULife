@@ -5,10 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk = 32
+    namespace = "ru.bmstu.ktorsocket"
+    compileSdk = 33
 
     defaultConfig {
-        applicationId = "ru.bmstu.sample"
+        applicationId = "ru.bmstu.ktorsocket"
         minSdk = 23
         targetSdk = 32
         versionCode = 1
@@ -26,15 +27,15 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
     buildFeatures {
         compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -62,6 +63,8 @@ dependencies {
     implementation(libs.kotlin.serialization.json)
     implementation(libs.coroutines)
     implementation(projects.uicommon)
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")

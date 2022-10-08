@@ -82,6 +82,7 @@ ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-sockets = { module = "io.ktor:ktor-client-websockets", version.ref = "ktor" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
