@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -18,8 +19,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -77,16 +76,23 @@ fun VectorsScreen() {
                 Divider(modifier = Modifier.fillMaxWidth(), color = UlTheme.colors.primaryText)
                 Text(text = res.value.res)
             }
-            Text(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                text = if (status.value) "Connected" else "Not connected",
-                style = UlTheme.typography.caption,
-                color = if (status.value) Color.Green else Color.Red,
-            )
+            Column(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+                if (!status.value) {
+                    Button(onClick = { viewModel.tryConnect() }) {
+                        Text(text = "Reconnect")
+                    }
+                }
+                Text(
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    text = if (status.value) "Connected" else "Not connected",
+                    style = UlTheme.typography.caption,
+                    color = if (status.value) Color.Green else Color.Red,
+                )
+            }
         }
     }
 
     LaunchedEffect(key1 = Unit) {
-        viewModel.initSockets()
+        viewModel.tryConnect()
     }
 }

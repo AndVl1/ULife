@@ -44,36 +44,30 @@ class VectorsViewModel(private val ktor: HttpClient): ViewModel() {
     }
 
     private fun observeSockets() {
-        try {
-            viewModelScope.launch {
-                try {
-                    socketSession?.incoming
-                        ?.receiveAsFlow()
-                        ?.mapNotNull { it as? Frame.Text }
-                        ?.map { it.readText() }
-                        ?.map { Json.decodeFromString<Response>(it) }
-                        ?.collect {
-                            _result.emit(if (it.res == "true") Result.True else if (it.res == "false") Result.False else Result.Unspecified)
-                        }
-                } catch (e: Exception) {
-                    _result.emit(Result.Unspecified)
-                    _status.emit(false)
-                }
-            }
-        } catch (e: Exception) {
-            viewModelScope.launch {
+        viewModelScope.launch {
+            try {
+                socketSession?.incoming
+                    ?.receiveAsFlow()
+                    ?.mapNotNull { it as? Frame.Text }
+                    ?.map { it.readText() }
+                    ?.map { Json.decodeFromString<Response>(it) }
+                    ?.collect {
+                        _result.emit(if (it.res == "true") Result.True else if (it.res == "false") Result.False else Result.Unspecified)
+                    }
+            } catch (e: Exception) {
                 _result.emit(Result.Unspecified)
                 _status.emit(false)
             }
         }
     }
 
-    fun initSockets() {
+    fun tryConnect() {
         viewModelScope.launch {
-            try {
-                socketSession = ktor.webSocketSession("${Routes.TOTAL_WS}/${Routes.INPUT}")
+            socketSession = try {
+                ktor.webSocketSession("${Routes.TOTAL_WS}/${Routes.INPUT}")
             } catch (e: Exception) {
                 _status.emit(false)
+                null
             }
             if (socketSession?.isActive == true) {
                 _status.emit(true)
