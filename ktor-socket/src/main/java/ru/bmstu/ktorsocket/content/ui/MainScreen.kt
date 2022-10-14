@@ -1,9 +1,11 @@
 package ru.bmstu.ktorsocket.content.ui
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -25,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.getViewModel
+import ru.bmstu.ktorsocket.content.data.Result
 import ru.bmstu.ktorsocket.content.data.VectorsViewModel
 import ru.bmstu.ulife.uicommon.theme.UlTheme
 
@@ -75,6 +78,14 @@ fun VectorsScreen() {
                 )
                 Divider(modifier = Modifier.fillMaxWidth(), color = UlTheme.colors.primaryText)
                 Text(text = res.value.res)
+                if (res.value !is Result.Unspecified) {
+                    Canvas(modifier = Modifier.fillMaxWidth()) {
+                        drawCircle(
+                            color = if (res.value is Result.True) Color.Green else Color.Red,
+                            radius = 500f
+                        )
+                    }
+                }
             }
             Column(modifier = Modifier.align(Alignment.CenterHorizontally)) {
                 if (!status.value) {
