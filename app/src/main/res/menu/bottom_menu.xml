@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mapFragment"
+        android:id="@+id/yaMapFragment"
         android:icon="@drawable/ic_item_promo"
         android:title="@string/item_maps" />
 
     <item
-        android:id="@+id/eventsListFragment"
+        android:id="@+id/shopListFragment"
         android:icon="@drawable/ic_people"
         android:title="@string/item_events" />
 

@@ -158,10 +158,11 @@ dependencies {
     implementation("io.insert-koin:koin-android-compat:3.2.1")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
+
+    implementation("com.yandex.android:maps.mobile:4.2.2-lite")
 }
 
 tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("dependencyUpdates").configure {
-
     // optional parameters
     checkForGradleUpdate = true
     outputFormatter = "json"

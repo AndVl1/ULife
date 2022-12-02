@@ -10,4 +10,5 @@ object Routes {
     const val OUTPUT = "num/output"
     const val TOTAL = "$HTTP://$IP:$PORT"
     const val TOTAL_WS = "$WS://$LOCAL:$PORT"
+    const val GET_PEAK= "getPeak"
 }

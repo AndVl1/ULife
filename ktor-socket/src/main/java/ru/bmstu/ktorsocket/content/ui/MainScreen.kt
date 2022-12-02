@@ -18,20 +18,19 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.getViewModel
-import ru.bmstu.ktorsocket.content.data.VectorsViewModel
+import ru.bmstu.ktorsocket.content.data.PeakViewModel
 import ru.bmstu.ulife.uicommon.theme.UlTheme
 
+/*
 @Composable
 fun VectorsScreen() {
-    val viewModel = getViewModel<VectorsViewModel>()
+    val viewModel = getViewModel<PeakViewModel>()
     val res = viewModel.result.collectAsState()
     val v1 = viewModel.v1.collectAsState()
     val v2 = viewModel.v2.collectAsState()
@@ -90,3 +89,4 @@ fun VectorsScreen() {
         viewModel.initSockets()
     }
 }
+*/

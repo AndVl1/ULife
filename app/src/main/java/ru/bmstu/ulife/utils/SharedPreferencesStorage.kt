@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.annotation.Nullable
 import org.koin.core.component.KoinComponent
+import ru.bmstu.ulife.data.models.ShopModel
 import ru.bmstu.ulife.data.models.UserModel
 import ru.bmstu.ulife.data.models.UserWithTokenModel
 import java.util.Collections.emptySet
@@ -14,6 +15,38 @@ class SharedPreferencesStorage constructor(
 
     private val storage: SharedPreferences =
         context.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+
+    fun putShopList(shopList: MutableList<ShopModel>) {
+        storage.edit()
+            .putStringSet("SHOP_LIST_TITLE", shopList.map { it.title }.toMutableSet())
+            .putStringSet("SHOP_LIST_METRO", shopList.map { it.metro }.toMutableSet())
+            .putStringSet("SHOP_LIST_ADDRESS", shopList.map { it.address }.toMutableSet())
+            .putStringSet("SHOP_LIST_PHONE", shopList.map { it.phone }.toMutableSet())
+            .putStringSet("SHOP_LIST_LATITUDE", shopList.map { it.latitude.toString() }.toMutableSet())
+            .putStringSet("SHOP_LIST_LONGITUDE", shopList.map { it.longitude.toString() }.toMutableSet())
+            .putStringSet("SHOP_LIST_URL", shopList.map { it.url }.toMutableSet())
+            .apply()
+    }
+
+    fun getShopList(): MutableList<ShopModel> {
+        val titleList = storage.getStringSet("SHOP_LIST_TITLE", mutableSetOf())?.toList()
+        val metroList = storage.getStringSet("SHOP_LIST_METRO", mutableSetOf())?.toList()
+        val addressList = storage.getStringSet("SHOP_LIST_ADDRESS", mutableSetOf())?.toList()
+        val phoneList = storage.getStringSet("SHOP_LIST_PHONE", mutableSetOf())?.toList()
+        val latitudeList = storage.getStringSet("SHOP_LIST_LATITUDE", mutableSetOf())?.toList()
+        val longitudeList = storage.getStringSet("SHOP_LIST_LONGITUDE", mutableSetOf())?.toList()
+        val urlList = storage.getStringSet("SHOP_LIST_URL", mutableSetOf())?.toList()
+
+        val resultList = mutableListOf<ShopModel>()
+        return if (titleList != null && metroList != null && addressList != null && phoneList != null && latitudeList != null && longitudeList != null && urlList != null) {
+            for (i in titleList.indices) {
+                resultList.add(ShopModel(titleList[i], metroList[i], addressList[i], phoneList[i], latitudeList[i].toDouble(), longitudeList[i].toDouble(), urlList[i]))
+            }
+            resultList
+        } else {
+            mutableListOf()
+        }
+    }
 
     fun putIsUserRegistered(isUserRegistered: Boolean) {
         storage.edit()

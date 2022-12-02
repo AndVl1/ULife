@@ -5,10 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Data(
-    @SerialName("v1")
-    val v1: String,
-    @SerialName("v2")
-    val v2: String,
+    @SerialName("str")
+    val str: String
 )
 
 @Serializable

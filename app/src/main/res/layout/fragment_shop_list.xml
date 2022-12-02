@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shop list"
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Создать точку:"
+        android:textSize="18sp"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_marginStart="16dp"
+        android:id="@+id/create_shop_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Название"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_marginStart="16dp"
+        android:id="@+id/create_shop_metro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Метро"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_marginStart="16dp"
+        android:id="@+id/create_shop_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Адрес"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_marginStart="16dp"
+        android:id="@+id/create_shop_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Телефон"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_marginStart="16dp"
+        android:id="@+id/create_shop_lat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Latitude"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_marginStart="16dp"
+        android:id="@+id/create_shop_long"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Longitude"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_marginStart="16dp"
+        android:id="@+id/create_shop_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ссылка на фото"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addShopBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Добавить"
+        android:textAllCaps="false"
+        android:layout_gravity="center"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/shop_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_shop" />
+
+</LinearLayout>

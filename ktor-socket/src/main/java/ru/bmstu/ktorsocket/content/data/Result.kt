@@ -1,7 +1,6 @@
 package ru.bmstu.ktorsocket.content.data
 
 sealed class Result(val res: String) {
-    object True: Result("true")
-    object False: Result("false")
+    data class Success(val str: String) : Result(str)
     object Unspecified: Result("unspecified")
 }

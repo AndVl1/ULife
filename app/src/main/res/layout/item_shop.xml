@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_shop_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_small"
+    app:cardCornerRadius="@dimen/radius_promotion_card">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="16dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/shop_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/big_ban" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/shop_title"
+            style="@style/TextHeadline6"
+            android:layout_width="0dp"
+            android:layout_marginTop="12dp"
+            android:padding="4dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:gravity="center"
+            android:background="@drawable/bg_rounded_gray_8"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:fontFamily="@font/roboto_regular_400"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shop_image"
+            tools:text="ТЦ Атриум" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_info"
+            app:layout_constraintTop_toBottomOf="@id/shop_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="80dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/shop_metro"
+                style="@style/TextHeadline6"
+                android:layout_width="0dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_regular_400"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_medium"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Метро Курская" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/shop_address"
+                android:textColor="@color/gray_text"
+                android:layout_width="0dp"
+                android:textSize="16sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:fontFamily="@font/roboto_regular_400"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:layout_marginTop="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shop_metro"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Москва, Измайловский парк" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/shop_phone"
+                android:textColor="@color/gray_text"
+                android:layout_width="0dp"
+                android:textSize="16sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:fontFamily="@font/roboto_regular_400"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:layout_marginTop="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shop_address"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="+79171234567" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/event_location_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toEndOf="@id/event_info"
+            android:padding="16dp"
+            app:layout_constraintTop_toTopOf="@id/event_info"
+            app:layout_constraintBottom_toBottomOf="@id/event_info">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_location" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/shop_coords"
+            tools:text="55.751574, 37.573856"
+            android:textSize="15sp"
+            android:textColor="@color/colorBlack"
+            android:fontFamily="@font/roboto_regular_400"
+            android:background="@drawable/bg_rounded_white_all"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

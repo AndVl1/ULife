@@ -19,9 +19,6 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import ru.bmstu.ktorsocket.netw.Routes
 
-// -> Координаты двух векторов размерности 3
-// <- Булево значение: истина - если ортогональны, ложь - если не ортогональны
-
 class VectorsViewModel(private val ktor: HttpClient): ViewModel() {
     private val _result = MutableStateFlow<Result>(Result.Unspecified)
     val result = _result.asStateFlow()
@@ -29,16 +26,13 @@ class VectorsViewModel(private val ktor: HttpClient): ViewModel() {
     val status = _status.asStateFlow()
     private var socketSession: WebSocketSession? = null
 
-    private val _v1 = MutableStateFlow("")
-    val v1 = _v1.asStateFlow()
-
-    private val _v2 = MutableStateFlow("")
-    val v2 = _v2.asStateFlow()
+    private val _str = MutableStateFlow("")
+    val str = _str.asStateFlow()
 
     fun sendData() {
         viewModelScope.launch {
             if (status.value) {
-                socketSession?.send(Frame.Text(Json.encodeToString(Data(v1.value, v2.value))))
+                socketSession?.send(Frame.Text(Json.encodeToString(Data(str.value))))
             }
         }
     }
@@ -71,7 +65,7 @@ class VectorsViewModel(private val ktor: HttpClient): ViewModel() {
     fun initSockets() {
         viewModelScope.launch {
             try {
-                socketSession = ktor.webSocketSession("${Routes.TOTAL_WS}/${Routes.INPUT}")
+                socketSession = ktor.webSocketSession("${Routes.TOTAL_WS}/${Routes.GET_PEAK}")
             } catch (e: Exception) {
                 _status.emit(false)
             }
@@ -84,16 +78,9 @@ class VectorsViewModel(private val ktor: HttpClient): ViewModel() {
         }
     }
 
-    fun onV1Input(v1: String) {
+    fun onStrInput(str: String) {
         viewModelScope.launch {
-            _v1.emit(v1)
-            sendData()
-        }
-    }
-
-    fun onV2Input(v2: String) {
-        viewModelScope.launch {
-            _v2.emit(v2)
+            _str.emit(str)
             sendData()
         }
     }

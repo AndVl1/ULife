@@ -3,7 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/mapFragment">
+    app:startDestination="@id/yaMapFragment">
+
+    <fragment
+        android:id="@+id/yaMapFragment"
+        android:name="ru.bmstu.ulife.main.ui.YaMapFragment"
+        android:label="YaMapFragment"
+        tools:layout="@layout/fragment_ya_map">
+    </fragment>
 
     <fragment
         android:id="@+id/authorizationFragment"
@@ -11,8 +18,8 @@
         android:label="AuthorizationFragment"
         tools:layout="@layout/fragment_authorization">
         <action
-            android:id="@+id/action_authorizationFragment_to_mapFragment"
-            app:destination="@id/mapFragment">
+            android:id="@+id/action_authorizationFragment_to_yaMapFragment"
+            app:destination="@id/yaMapFragment">
         </action>
     </fragment>
 
@@ -39,6 +46,16 @@
         <!--<argument
             android:name="eventModel"
             app:argType="ru.bmstu.ulife.main.maps.model.EventModel"/>-->
+        <argument
+            android:name="eventId"
+            app:argType="string"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/shopListFragment"
+        android:name="ru.bmstu.ulife.main.ui.ShopListFragment"
+        android:label="ShopListFragment"
+        tools:layout="@layout/fragment_shop_list">
         <argument
             android:name="eventId"
             app:argType="string"/>
