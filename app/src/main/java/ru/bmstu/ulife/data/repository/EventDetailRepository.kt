@@ -2,7 +2,10 @@ package ru.bmstu.ulife.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import ru.bmstu.ulife.data.models.DataList
+import ru.bmstu.ulife.data.models.DataModel
 import ru.bmstu.ulife.data.models.EventModel
+import ru.bmstu.ulife.data.models.KrResponse
 import ru.bmstu.ulife.data.states.ErrorHandler
 import ru.bmstu.ulife.data.states.Result
 import ru.bmstu.ulife.source.EventDetailRemoteDataSource
@@ -15,6 +18,17 @@ class EventDetailRepository constructor(
     suspend fun getEventByEventId(userId: String, eventId: String): Flow<EventModel> {
         return flow {
             val responseFeed = remoteDataSource.getEventByEventId(userId, eventId)
+            if (responseFeed is Result.Success) {
+                emit(responseFeed.data)
+            } else if (responseFeed is Result.Error) {
+                onError(responseFeed.code)
+            }
+        }
+    }
+
+    suspend fun getData(): Flow<KrResponse> {
+        return flow {
+            val responseFeed = remoteDataSource.getData()
             if (responseFeed is Result.Success) {
                 emit(responseFeed.data)
             } else if (responseFeed is Result.Error) {

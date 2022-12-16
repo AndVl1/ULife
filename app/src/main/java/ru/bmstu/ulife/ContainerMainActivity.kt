@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import ru.bmstu.ulife.databinding.ContainerMainBinding
 import ru.bmstu.ulife.ext.hide
 import ru.bmstu.ulife.ext.show

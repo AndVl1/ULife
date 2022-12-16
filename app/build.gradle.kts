@@ -124,6 +124,8 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:30.4.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
+    implementation("com.google.firebase:firebase-database:20.0.4")
+    implementation("com.google.firebase:firebase-auth:21.1.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
@@ -160,6 +162,13 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
 
     implementation("com.yandex.android:maps.mobile:4.2.2-lite")
+
+    implementation("com.google.firebase:firebase-bom:31.1.1")
+    implementation("com.google.android.gms:play-services-auth:20.4.0")
+    implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
+
+    implementation("io.ktor:ktor-client-serialization:1.4.2")
 }
 
 tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("dependencyUpdates").configure {

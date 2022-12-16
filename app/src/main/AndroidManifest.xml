@@ -20,14 +20,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ULife"
         tools:targetApi="31">
-<!--        <activity android:name=".Splash"-->
-<!--            android:exported="true"-->
-<!--            android:theme="@style/Theme.ULife">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
         <activity
             android:name=".ContainerMainActivity"
             android:exported="true"
@@ -38,14 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <nav-graph android:value="@navigation/nav_graph_main" />
-            <!--<intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:host="37.139.33.65:8080"
-                    android:scheme="http" />
-            </intent-filter>-->
         </activity>
         <activity android:name=".MainActivity" />
         <meta-data

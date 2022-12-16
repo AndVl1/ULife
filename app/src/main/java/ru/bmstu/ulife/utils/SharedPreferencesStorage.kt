@@ -22,8 +22,14 @@ class SharedPreferencesStorage constructor(
             .putStringSet("SHOP_LIST_METRO", shopList.map { it.metro }.toMutableSet())
             .putStringSet("SHOP_LIST_ADDRESS", shopList.map { it.address }.toMutableSet())
             .putStringSet("SHOP_LIST_PHONE", shopList.map { it.phone }.toMutableSet())
-            .putStringSet("SHOP_LIST_LATITUDE", shopList.map { it.latitude.toString() }.toMutableSet())
-            .putStringSet("SHOP_LIST_LONGITUDE", shopList.map { it.longitude.toString() }.toMutableSet())
+            .putStringSet(
+                "SHOP_LIST_LATITUDE",
+                shopList.map { it.latitude.toString() }.toMutableSet()
+            )
+            .putStringSet(
+                "SHOP_LIST_LONGITUDE",
+                shopList.map { it.longitude.toString() }.toMutableSet()
+            )
             .putStringSet("SHOP_LIST_URL", shopList.map { it.url }.toMutableSet())
             .apply()
     }
@@ -40,7 +46,17 @@ class SharedPreferencesStorage constructor(
         val resultList = mutableListOf<ShopModel>()
         return if (titleList != null && metroList != null && addressList != null && phoneList != null && latitudeList != null && longitudeList != null && urlList != null) {
             for (i in titleList.indices) {
-                resultList.add(ShopModel(titleList[i], metroList[i], addressList[i], phoneList[i], latitudeList[i].toDouble(), longitudeList[i].toDouble(), urlList[i]))
+                resultList.add(
+                    ShopModel(
+                        titleList[i],
+                        metroList[i],
+                        addressList[i],
+                        phoneList[i],
+                        latitudeList[i].toDouble(),
+                        longitudeList[i].toDouble(),
+                        urlList[i]
+                    )
+                )
             }
             resultList
         } else {
@@ -313,7 +329,7 @@ class SharedPreferencesStorage constructor(
     }
 
     fun putUserWithTokenModel(userModel: UserWithTokenModel) {
-        println("LOG put user with token: "+ userModel)
+        println("LOG put user with token: " + userModel)
         putUserId(userModel.userId)
         putUserFirstName(userModel.firstName)
         putUserSecondName(userModel.lastName)
@@ -342,5 +358,15 @@ class SharedPreferencesStorage constructor(
         putUserCountry("")
         putUserCity("")
         putUserGender("")
+    }
+
+    fun putIsLogout(b: Boolean) {
+        storage.edit()
+            .putBoolean("is_logout", b)
+            .apply()
+    }
+
+    fun getIsLogout(): Boolean {
+        return storage.getBoolean("is_logout", false)
     }
 }

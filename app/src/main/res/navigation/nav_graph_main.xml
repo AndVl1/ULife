@@ -3,13 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/yaMapFragment">
+    app:startDestination="@id/authLabFragment">
 
     <fragment
         android:id="@+id/yaMapFragment"
         android:name="ru.bmstu.ulife.main.ui.YaMapFragment"
         android:label="YaMapFragment"
         tools:layout="@layout/fragment_ya_map">
+    </fragment>
+
+    <fragment
+        android:id="@+id/kontraFragment"
+        android:name="ru.bmstu.ulife.main.ui.KontraFragment"
+        android:label="KontraFragment"
+        tools:layout="@layout/fragment_kontra">
+    </fragment>
+
+    <fragment
+        android:id="@+id/authLabFragment"
+        android:name="ru.bmstu.ulife.main.ui.AuthLabFragment"
+        android:label="AuthLabFragment"
+        tools:layout="@layout/fragment_auth_lab">
+        <action
+            android:id="@+id/action_authLabFragment_to_studentListFragment"
+            app:destination="@id/studentListFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/studentListFragment"
+        android:name="ru.bmstu.ulife.main.ui.StudentListFragment"
+        android:label="StudentListFragment"
+        tools:layout="@layout/fragment_student_list">
     </fragment>
 
     <fragment

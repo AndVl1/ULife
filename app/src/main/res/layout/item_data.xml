@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_margin="8dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/data_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data Year"/>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/data_year"
+        android:id="@+id/data_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data Name"/>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/data_name"
+        android:id="@+id/data_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data Location"/>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/data_location"
+        android:id="@+id/data_deaths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data Deaths"/>
+
+    <TextView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/data_deaths"
+        android:id="@+id/data_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data ID"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

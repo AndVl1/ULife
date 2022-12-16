@@ -48,4 +48,6 @@
     <string name="item_events">Список событий</string>
     <string name="item_maps">Карта событий</string>
     <string name="account_logout">Выйти из аккаунта</string>
+    <string name="login">Войти</string>
+    <string name="register">Зарегистрироваться</string>
 </resources>

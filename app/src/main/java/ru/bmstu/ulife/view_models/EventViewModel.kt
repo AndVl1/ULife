@@ -21,6 +21,14 @@ class EventViewModel constructor(private val repository: EventDetailRepository) 
         }
     }
 
+    fun getData() {
+        viewModelScope.launch {
+            repository.getData()
+                .catch { onError(it) }
+                .collect { state.emit(EventDetailState.DataSuccess(it)) }
+        }
+    }
+
     private suspend fun onError(e: Throwable) {
         when(e) {
             is ErrorHandler.AuthorizationError -> state.emit(EventDetailState.Error(R.string.error_authorization))
