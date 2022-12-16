@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -39,13 +41,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.koin.androidx.compose.getViewModel
-import ru.bmstu.ktorsample.network.EvenResponse
+import ru.bmstu.ktorsample.network.KrRespItem
+import ru.bmstu.ktorsample.network.KrResponse
 import ru.bmstu.ktorsample.network.LoadingState
 import ru.bmstu.ulife.uicommon.theme.UlTheme
 
 @Composable
 @Preview
-fun InputScreen() {
+fun KrScreen() {
     var currentValue by remember { mutableStateOf("") }
     val viewModel = getViewModel<InputViewModel>()
     val state = viewModel.state.collectAsState(LoadingState.Initial)
@@ -67,7 +70,7 @@ fun InputScreen() {
                         )
                         Button(
                             onClick = {
-                                viewModel.handleEvent(InputEvent.ButtonClicked(currentValue.toInt()))
+                                viewModel.handleEvent(InputEvent.ButtonClicked(0))
                             },
                             enabled = state.value != LoadingState.Loading,
                             modifier = Modifier.align(Alignment.End)
@@ -100,31 +103,23 @@ fun InputScreen() {
 }
 
 @Composable
-private fun Result(response: EvenResponse.Success) {
+private fun Result(response: KrResponse.Success) {
     Box(modifier = Modifier.fillMaxSize()) {
-        Card(
-            elevation = 5.dp,
-            shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.padding(5.dp).align(Alignment.Center),
-            backgroundColor = UlTheme.colors.secondaryBackground,
-        ) {
-            Column(
-                modifier = Modifier
-                    .scrollable(rememberScrollState(), orientation = Orientation.Vertical)
-            ) {
-                Text(
-                    text = response.ad,
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    style = UlTheme.typography.heading,
-                    fontSize = 40.sp
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                Text(
-                    text = "Number is ${if (response.isEven) "even" else "odd"}",
-                    style = UlTheme.typography.body,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
+        LazyColumn() {
+            items(response.resp) {
+                Data(data = it)
+                Spacer(modifier = Modifier.height(4.dp))
             }
+        }
+    }
+}
+
+@Composable
+private fun Data(data: KrRespItem) {
+    Card(elevation = 4.dp, shape = RoundedCornerShape(4.dp)) {
+        Column {
+            Text(text = data.country)
+            Text(text = data.sport)
         }
     }
 }
