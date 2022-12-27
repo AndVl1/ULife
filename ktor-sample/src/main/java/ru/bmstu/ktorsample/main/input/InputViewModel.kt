@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import ru.bmstu.ktorsample.mvi.IntentHandler
-import ru.bmstu.ktorsample.network.EvenResponse
+import ru.bmstu.ktorsample.network.KrResponse
 import ru.bmstu.ktorsample.network.LoadingState
 
 class InputViewModel(
@@ -51,10 +51,10 @@ class InputViewModel(
         viewModelScope.launch {
             _state.emit(LoadingState.Loading)
             when (val response = repository.checkEven(value)) {
-                EvenResponse.Error -> {
+                KrResponse.Error -> {
                     _state.emit(LoadingState.Error)
                 }
-                is EvenResponse.Success -> {
+                is KrResponse.Success -> {
                     _state.emit(LoadingState.Loaded(response))
                     delay(5000)
                     _state.emit(LoadingState.Initial)
